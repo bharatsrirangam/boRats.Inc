@@ -26,6 +26,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+
+import com.boratsinc.Model.Admin;
+import com.boratsinc.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +65,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Spinner mUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +101,12 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        mUserType = (Spinner) findViewById(R.id.Admin_User);
+        mUserType.setSelection(1);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, new String[]{"Admin", "User"});
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mUserType.setAdapter(adapter2);
     }
 
     private void populateAutoComplete() {
@@ -160,6 +172,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
         String passwordC = mPasswordConfirmView.getText().toString();
+        String userType = (String) mUserType.getSelectedItem();
 
         boolean cancel = false;
         View focusView = null;
@@ -212,6 +225,11 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
+            if (userType.equals("Admin")) {
+                ModelBackground.getInstance().addUser(new Admin(username, password));
+            } else {
+                ModelBackground.getInstance().addUser(new User(username, password));
+            }
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
             launchRatScreen();

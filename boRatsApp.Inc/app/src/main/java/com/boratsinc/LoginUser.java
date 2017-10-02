@@ -162,21 +162,22 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
-        }
+        } else {
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
-            cancel = true;
-        } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUsernameView;
-            cancel = true;
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(username)) {
+                mUsernameView.setError(getString(R.string.error_field_required));
+                focusView = mUsernameView;
+                cancel = true;
+            } else if (!isUserValid(username, password)) {
+                mUsernameView.setError(getString(R.string.error_invalid_username_password));
+                focusView = mUsernameView;
+                cancel = true;
+            }
         }
 
         if (cancel) {
@@ -193,9 +194,21 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         }
     }
 
-    private boolean isUsernameValid(String username) {
-        //TODO: Replace this with your own logic
-        return username.length() >= 4;
+    private boolean isUserValid(String username, String password) {
+
+        if (!(ModelBackground.getInstance().getUsers().size() > 0)) {
+            return false;
+        }
+        for (User use: ModelBackground.getInstance().getUsers()) {
+            if (use.getPassword().equals(password)) {
+                if (use.getEmail().equals(username)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean isPasswordValid(String password) {

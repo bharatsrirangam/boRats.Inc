@@ -29,7 +29,8 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <AutoCompleteTextView
                 android:id="@+id/username"
@@ -70,6 +71,19 @@
                 android:layout_height="wrap_content"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select User Type"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                android:layout_weight="2.13" />
+
+            <Spinner
+                android:id="@+id/Admin_User"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
