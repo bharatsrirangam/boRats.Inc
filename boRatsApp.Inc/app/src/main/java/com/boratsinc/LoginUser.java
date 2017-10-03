@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.ColorSpace;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -162,8 +163,8 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+        if (TextUtils.isEmpty(password)) {
+            mPasswordView.setError("Please enter a password.");
             focusView = mPasswordView;
             cancel = true;
         } else {
@@ -195,17 +196,10 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
     }
 
     private boolean isUserValid(String username, String password) {
-
-        if (!(ModelBackground.getInstance().getUsers().size() > 0)) {
-            return false;
-        }
-        for (User use: ModelBackground.getInstance().getUsers()) {
-            if (use.getPassword().equals(password)) {
-                if (use.getEmail().equals(username)) {
-                    return true;
-                } else {
-                    return false;
-                }
+        List<User> users = ModelBackground.getInstance().getUsers();
+        for(User user: users) {
+            if (user.getEmail().equals(username)) {
+                return user.getPassword().equals(password);
             }
         }
         return false;
@@ -213,7 +207,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() >= 4;
+        return true;
     }
 
     /**
@@ -330,22 +324,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            /*try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }*/
-
-            for (User user : users) {
-                if (mEmail.equals(user.getEmail())) {
-                    return mPassword.equals(user.getPassword());
-                }
-            }
-
-            // TODO: register the new account here.
-            wrongEmail = true;
-            return false;
+            return true;
         }
 
         @Override
@@ -356,9 +335,6 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
             if (success) {
                 finish();
                 launchRatScreen();
-            } else if (!wrongEmail){
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
             } else {
                 mPasswordView.setError("Email not found");
                 mPasswordView.requestFocus();

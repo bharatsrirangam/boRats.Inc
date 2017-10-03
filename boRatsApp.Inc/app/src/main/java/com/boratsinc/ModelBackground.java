@@ -18,6 +18,7 @@ public class ModelBackground {
 
     private ModelBackground() {
         usersAndAdmins = new ArrayList<User>();
+        usersAndAdmins.add(new User("user", "name"));
     }
 
     public boolean addUser(User user) {
