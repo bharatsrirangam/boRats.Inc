@@ -1,5 +1,13 @@
 package com.boratsinc.Model;
 
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,10 +21,13 @@ public class Model {
     List<RatSighting> sightings;
     private final RatSighting nullSighting = new RatSighting(-1, new Date(), "NULL", -1, "NULL", null, -1, -1);
     private RatSighting current;
+    private FirebaseDatabase fire;
+    private DatabaseReference baseRef;
+
     private Model() {
         sightings = new ArrayList<RatSighting>();
 
-        loadDummyData();
+        loadData();
     }
 
     public static Model getInstance() {
@@ -28,6 +39,30 @@ public class Model {
         sightings.add(new RatSighting(2, new Date(2017, 1, 2), "idk2", 30318, "New York Cityd", Borough.BROOKLYN, 60, 90));
         sightings.add(new RatSighting(3, new Date(2017, 1, 2), "idk2", 30318, "New York Cityd", Borough.BROOKLYN, 60, 90));
         current = sightings.get(0);
+    }
+
+    private void loadData() {
+        fire = FirebaseDatabase.getInstance();
+        baseRef = fire.getReference();
+        baseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    RatSighting rat = dataSnapshot.child("RatSightings").child("33664963").getValue(RatSighting.class);
+                    sightings.add(rat);
+                    current = sightings.get(0);
+                } catch (Exception e) {
+                    sightings.add(nullSighting);
+                    current = sightings.get(0);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                sightings.add(nullSighting);
+                current = sightings.get(0);
+            }
+        });
     }
 
     public List<RatSighting> getSightings() {
