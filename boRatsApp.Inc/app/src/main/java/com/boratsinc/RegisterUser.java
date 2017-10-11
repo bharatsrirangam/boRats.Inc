@@ -232,12 +232,12 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             }
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
-            launchRatScreen();
+            launchUserView();
         }
     }
 
-    private void launchRatScreen() {
-        Intent intent = new Intent(this, RatScreen.class);
+    private void launchUserView() {
+        Intent intent = new Intent(this, UserView.class);
         startActivity(intent);
     }
 
