@@ -108,6 +108,6 @@ public class RatSighting {
     }
 
     public String toString() {
-        return "" + key + ", " + incident_address + ", " + created + ", " + incident_zip + ", " + city + ", " + borough + ", " + lat + ", " + lon;
+        return "KEY: " + key + "\nADDRESS: " + incident_address + "\nCREATED: " + created + "\nZIP: " + incident_zip + "\nCITY: " + city + "\nBOROUGH: " + borough + "\nLAT: " + lat + "\nLON: " + lon;
     }
 }

@@ -95,7 +95,7 @@ public class RatSightingsListView extends AppCompatActivity {
               Now we bind the data to the widgets.  In this case, pretty simple, put the id in one
               textview and the string rep of a course in the other.
              */
-            holder.mIdView.setText("" + mSightingList.get(position).getIncident_address());
+            holder.mIdView.setText("" + mSightingList.get(position).getKey());
             //holder.mContentView.setText(mSightingList.get(position).toString());
             holder.mContentView.setText(":" + position);
 
