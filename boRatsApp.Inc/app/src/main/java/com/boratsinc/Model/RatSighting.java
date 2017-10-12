@@ -24,16 +24,8 @@ public class RatSighting {
 
     }
 
-    public void setKey(String k) {
-        key = k;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
     public RatSighting(String key, String date, String loc, String zip, String city, String bor, String lat, String longi) {
-        this.incident_address = key;
+        this.key = key;
         created = date;
         location_type = loc;
         this.incident_zip = zip;
@@ -43,6 +35,14 @@ public class RatSighting {
         lon = longi;
     }
 
+    public String getKey() {
+        return key;   
+    }
+    
+    public void setKey(String key) {
+        this.key = key;    
+    }
+    
     public String getIncident_address() {
         return incident_address;
     }
@@ -108,6 +108,6 @@ public class RatSighting {
     }
 
     public String toString() {
-        return "" + incident_address + ", " + created + ", " + incident_zip + ", " + city + ", " + borough + ", " + lat + ", " + lon;
+        return "KEY: " + key + "\nADDRESS: " + incident_address + "\nCREATED: " + created + "\nZIP: " + incident_zip + "\nCITY: " + city + "\nBOROUGH: " + borough + "\nLAT: " + lat + "\nLON: " + lon;
     }
 }

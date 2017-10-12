@@ -54,11 +54,25 @@ public class Model {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
+<<<<<<< HEAD
                     int number = 36907530;
                     for (int x=0;x<20;x++) {
                         sightingsTemp.add(dataSnapshot.child("RatSightings").child("36907530").getValue(RatSighting.class));
                         number++;
                     }
+=======
+                    RatSighting rat = dataSnapshot.child("RatSightings").child("36907529").getValue(RatSighting.class);
+                    sightingsTemp.add(rat);
+                    current = sightings.get(0);
+                    
+                    /**
+                    for (DataSnapshot ds: dataSnapshot.child("RatSightings").getChildren()) {
+                        RatSighting rat = ds.getValue(RatSighting.class);
+                        sightingsTemp.add(rat);
+                    }
+                    current = sightingsTemp.get(0);
+                    **/
+>>>>>>> e6d68ab716614d724578bb67d073a2503472311e
                 } catch (Exception e) {
                     sightingsTemp.add(nullSighting);
                 }
