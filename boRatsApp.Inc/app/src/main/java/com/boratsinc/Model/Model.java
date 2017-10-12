@@ -19,6 +19,7 @@ import java.util.List;
 public class Model {
     private static final Model instance = new Model();
     List<RatSighting> sightings;
+    List<RatSighting> sightingsTemp;
     private final RatSighting nullSighting = new RatSighting("-1", "new Date()", "NULL", "-1", "NULL", "null", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
@@ -26,6 +27,7 @@ public class Model {
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
+        sightingsTemp = new ArrayList<RatSighting>();
 
         loadData();
     }
@@ -42,6 +44,7 @@ public class Model {
     }
 
     private void loadData() {
+        sightings.add(nullSighting);
         fire = FirebaseDatabase.getInstance();
         baseRef = fire.getReference();
         baseRef.addValueEventListener(new ValueEventListener() {
@@ -49,17 +52,17 @@ public class Model {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
                     RatSighting rat = dataSnapshot.child("RatSightings").child("36907529").getValue(RatSighting.class);
-                    sightings.add(rat);
+                    sightingsTemp.add(rat);
                     current = sightings.get(0);
                 } catch (Exception e) {
-                    sightings.add(nullSighting);
                     current = sightings.get(0);
                 }
+                sightings = sightingsTemp;
+                current = sightings.get(0);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                sightings.add(nullSighting);
                 current = sightings.get(0);
             }
         });
