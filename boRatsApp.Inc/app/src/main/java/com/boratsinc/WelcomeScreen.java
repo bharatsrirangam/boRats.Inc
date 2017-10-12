@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.boratsinc.LoginUser;
+import com.boratsinc.Model.Model;
 import com.boratsinc.RegisterUser;
 
 public class WelcomeScreen extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+        Model.getInstance();
 
         loginButton = (Button) findViewById(R.id.button);
 

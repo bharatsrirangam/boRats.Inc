@@ -36,7 +36,7 @@ public class RatSightingsListView extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This will create a new RatSighting", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -97,7 +97,7 @@ public class RatSightingsListView extends AppCompatActivity {
              */
             holder.mIdView.setText("" + mSightingList.get(position).getIncident_address());
             //holder.mContentView.setText(mSightingList.get(position).toString());
-            holder.mContentView.setText(":" + position);
+            holder.mContentView.setText("");
 
             /*
              * set up a listener to handle if the user clicks on this list item, what should happen?

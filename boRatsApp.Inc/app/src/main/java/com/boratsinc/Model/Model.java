@@ -1,7 +1,9 @@
 package com.boratsinc.Model;
 
 import android.util.Log;
+import android.view.ViewGroup;
 
+import com.boratsinc.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +22,8 @@ public class Model {
     private static final Model instance = new Model();
     List<RatSighting> sightings;
     List<RatSighting> sightingsTemp;
-    private final RatSighting nullSighting = new RatSighting("-1", "new Date()", "NULL", "-1", "NULL", "null", "-1", "-1");
+    private final RatSighting nullSighting = new RatSighting("NULL", "00/00/000", "NULL", "-1", "NULL", "null", "-1", "-1");
+    private final RatSighting loadingSighting = new RatSighting("LOADING", "00/00/0000", "NULL", "-1", "NULL", "null", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
     private DatabaseReference baseRef;
@@ -37,25 +40,27 @@ public class Model {
     }
 
     private void loadDummyData() {
-        sightings.add(new RatSighting("1", "new Date(2017, 1, 1)", "idk", "77069", "New York City", "bronx", "30", "50"));
-        sightings.add(new RatSighting("2", "new Date(2017, 1, 2)", "idk2", "30318", "New York Cityd", "bronasdfax", "3d0", "5sd0"));
-        sightings.add(new RatSighting("1", "new Date(2017, 1, 1)", "idk", "77069", "New York City", "bronx", "30", "50"));
+        sightings.add(new RatSighting("1", "1/1/2017", "idk", "77069", "New York City", "bronx", "30", "50"));
+        sightings.add(new RatSighting("2", "1/2/2017", "idk2", "30318", "New York Cityd", "bronasdfax", "3d0", "5sd0"));
+        sightings.add(new RatSighting("1", "1/3/2017", "idk", "77069", "New York City", "bronx", "30", "50"));
         current = sightings.get(0);
     }
 
     private void loadData() {
-        sightings.add(nullSighting);
+        sightings.add(loadingSighting);
         fire = FirebaseDatabase.getInstance();
         baseRef = fire.getReference();
         baseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
-                    RatSighting rat = dataSnapshot.child("RatSightings").child("36907529").getValue(RatSighting.class);
-                    sightingsTemp.add(rat);
-                    current = sightings.get(0);
+                    int number = 36907530;
+                    for (int x=0;x<20;x++) {
+                        sightingsTemp.add(dataSnapshot.child("RatSightings").child("36907530").getValue(RatSighting.class));
+                        number++;
+                    }
                 } catch (Exception e) {
-                    current = sightings.get(0);
+                    sightingsTemp.add(nullSighting);
                 }
                 sightings = sightingsTemp;
                 current = sightings.get(0);
@@ -63,6 +68,8 @@ public class Model {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                sightingsTemp.add(nullSighting);
+                sightings = sightingsTemp;
                 current = sightings.get(0);
             }
         });

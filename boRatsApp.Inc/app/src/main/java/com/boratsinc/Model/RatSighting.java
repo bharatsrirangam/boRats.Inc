@@ -7,6 +7,7 @@ import java.util.Date;
  */
 
 public class RatSighting {
+    private String key;
     private String incident_address;
     private String created;
     private String location_type;
@@ -21,6 +22,14 @@ public class RatSighting {
 
     public RatSighting() {
 
+    }
+
+    public void setKey(String k) {
+        key = k;
+    }
+
+    public String getKey() {
+        return key;
     }
 
     public RatSighting(String key, String date, String loc, String zip, String city, String bor, String lat, String longi) {
