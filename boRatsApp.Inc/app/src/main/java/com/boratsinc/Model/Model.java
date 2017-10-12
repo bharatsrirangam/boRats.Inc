@@ -54,6 +54,14 @@ public class Model {
                     RatSighting rat = dataSnapshot.child("RatSightings").child("36907529").getValue(RatSighting.class);
                     sightingsTemp.add(rat);
                     current = sightings.get(0);
+                    
+                    /**
+                    for (DataSnapshot ds: dataSnapshot.child("RatSightings").getChildren()) {
+                        RatSighting rat = ds.getValue(RatSighting.class);
+                        sightingsTemp.add(rat);
+                    }
+                    current = sightingsTemp.get(0);
+                    **/
                 } catch (Exception e) {
                     current = sightings.get(0);
                 }
