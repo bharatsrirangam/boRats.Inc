@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 import com.boratsinc.R;
+import com.boratsinc.RatSightingsListView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,16 +29,20 @@ public class Model {
     private RatSighting current;
     private FirebaseDatabase fire;
     private DatabaseReference baseRef;
+    private RatSightingsListView.MyAdapter adapter;
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
-        sightingsTemp = new ArrayList<RatSighting>();
 
         loadData();
     }
 
     public static Model getInstance() {
         return instance;
+    }
+
+    public void setAdapter(RatSightingsListView.MyAdapter a) {
+        adapter = a;
     }
 
     private void loadDummyData() {
@@ -48,36 +54,31 @@ public class Model {
 
     private void loadData() {
         sightings.add(loadingSighting);
+        current = sightings.get(0);
         fire = FirebaseDatabase.getInstance();
         baseRef = fire.getReference();
         baseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                sightingsTemp = new ArrayList<RatSighting>();
+                int count = 0;
                 try {
-<<<<<<< HEAD
-                    int number = 36907530;
-                    for (int x=0;x<20;x++) {
-                        sightingsTemp.add(dataSnapshot.child("RatSightings").child("36907530").getValue(RatSighting.class));
-                        number++;
+                    Iterator<DataSnapshot> thing = dataSnapshot.child("RatSightings").getChildren().iterator();
+                    while (thing.hasNext() && count < 20) {
+                        sightingsTemp.add(thing.next().getValue(RatSighting.class));
+                        count++;
                     }
-=======
-                    RatSighting rat = dataSnapshot.child("RatSightings").child("36907529").getValue(RatSighting.class);
-                    sightingsTemp.add(rat);
-                    current = sightings.get(0);
-                    
-                    /**
-                    for (DataSnapshot ds: dataSnapshot.child("RatSightings").getChildren()) {
-                        RatSighting rat = ds.getValue(RatSighting.class);
-                        sightingsTemp.add(rat);
-                    }
-                    current = sightingsTemp.get(0);
-                    **/
->>>>>>> e6d68ab716614d724578bb67d073a2503472311e
                 } catch (Exception e) {
                     sightingsTemp.add(nullSighting);
+                    Log.v("FAILURE", "Could not load Ratsightings.");
                 }
                 sightings = sightingsTemp;
                 current = sightings.get(0);
+                if (adapter != null) {
+                    adapter.updateList(sightings);
+                    Log.v("Load", "Data Set has been notified as changed.");
+                }
+                Log.d("Load", "Loaded " + count + " RatSightings.");
             }
 
             @Override
@@ -85,6 +86,9 @@ public class Model {
                 sightingsTemp.add(nullSighting);
                 sightings = sightingsTemp;
                 current = sightings.get(0);
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
     }
