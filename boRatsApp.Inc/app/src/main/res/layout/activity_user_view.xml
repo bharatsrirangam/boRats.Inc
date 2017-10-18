@@ -14,13 +14,20 @@
         tools:layout_editor_absoluteX="8dp">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/btn_view_rat_sightings_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="View Rat Sightings" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/addbtn_user_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Rat Sighting"
+            tools:text="Add Rat Sighting" />
+
+        <Button
+            android:id="@+id/logoutbtn_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Logout" />
