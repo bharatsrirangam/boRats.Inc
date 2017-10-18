@@ -15,7 +15,7 @@ public class RatSightingDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rat_sighting_detail);
         TextView details = (TextView) findViewById(R.id.Details);
         RatSighting cur = Model.getInstance().getCurrentSighting();
-        details.append("Incident Address: " + cur.getIncident_address() + "\n");
+        details.setText("Incident Address: " + cur.getIncident_address() + "\n");
         details.append("Date Created: " + cur.getCreated() + "\n");
         details.append("Location Type: " + cur.getLocation_type() + "\n");
         details.append("Zip Code: " + cur.getIncident_zip() + "\n");

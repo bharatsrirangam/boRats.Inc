@@ -70,7 +70,7 @@ public class Model {
                     }
                 } catch (Exception e) {
                     sightingsTemp.add(nullSighting);
-                    Log.v("FAILURE", "Could not load Ratsightings.");
+                    Log.v("FAILURE", "Could not load RatSightings.");
                 }
                 sightings = sightingsTemp;
                 current = sightings.get(0);
