@@ -29,6 +29,7 @@ public class RatSightingsListView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings_list_view);
+        Model.getInstance().loadData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,8 +37,9 @@ public class RatSightingsListView extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "This will create a new RatSighting", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Context con = view.getContext();
+                Intent intent = new Intent(con, AddRatSighting.class);
+                con.startActivity(intent);
             }
         });
 

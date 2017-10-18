@@ -1,6 +1,8 @@
 package com.boratsinc.Model;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by baseb on 10/10/2017.
@@ -15,6 +17,7 @@ public class RatSighting {
     private String city;
     private String borough;
     private String lat, lon;
+    public static final List<String> legalBoroughs = Arrays.asList("Manhattan", "Staten Island", "Queens", "Brooklyn", "Bronx");
 
     public RatSighting(int key) {
 

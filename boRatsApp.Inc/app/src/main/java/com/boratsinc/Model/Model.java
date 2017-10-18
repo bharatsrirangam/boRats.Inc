@@ -11,6 +11,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -24,7 +26,7 @@ public class Model {
     private static final Model instance = new Model();
     List<RatSighting> sightings;
     List<RatSighting> sightingsTemp;
-    private final RatSighting nullSighting = new RatSighting("NULL", "00/00/000", "NULL", "-1", "NULL", "null", "-1", "-1");
+    private final RatSighting nullSighting = new RatSighting("Loading Failed", "00/00/000", "NULL", "-1", "NULL", "null", "-1", "-1");
     private final RatSighting loadingSighting = new RatSighting("LOADING", "00/00/0000", "NULL", "-1", "NULL", "null", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
@@ -33,8 +35,6 @@ public class Model {
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
-
-        loadData();
     }
 
     public static Model getInstance() {
@@ -52,7 +52,8 @@ public class Model {
         current = sightings.get(0);
     }
 
-    private void loadData() {
+    public void loadData() {
+        sightings = new ArrayList<>();
         sightings.add(loadingSighting);
         current = sightings.get(0);
         fire = FirebaseDatabase.getInstance();
@@ -70,7 +71,7 @@ public class Model {
                     }
                 } catch (Exception e) {
                     sightingsTemp.add(nullSighting);
-                    Log.v("FAILURE", "Could not load RatSightings.");
+                    Log.e("Load", "Could not load RatSightings. ", e);
                 }
                 sightings = sightingsTemp;
                 current = sightings.get(0);
@@ -89,6 +90,7 @@ public class Model {
                 if (adapter != null) {
                     adapter.notifyDataSetChanged();
                 }
+                Log.e("Load", "RatSightings load was cancelled.");
             }
         });
     }
