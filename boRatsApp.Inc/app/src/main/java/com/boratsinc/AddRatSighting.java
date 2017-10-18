@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
 
 public class AddRatSighting extends AppCompatActivity {
@@ -34,8 +35,9 @@ public class AddRatSighting extends AppCompatActivity {
                 String borough = boroughSpinner.getSelectedItem().toString();
                 String lat = ((EditText) findViewById(R.id.Latitude)).getText().toString();
                 String lon = ((EditText) findViewById(R.id.Longitude)).getText().toString();
-                RatSighting rat = new RatSighting(address, created, location_type, incident_zip, city, borough, lat, lon);
+                RatSighting rat = new RatSighting(Model.getHead() ,address, created, location_type, incident_zip, city, borough, lat, lon);
                 //Bharat does something here
+                Model.getInstance().addRatSighting(rat);
                 finish();
             }
         });

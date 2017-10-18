@@ -31,11 +31,14 @@ public class Model {
     private RatSighting current;
     private FirebaseDatabase fire;
     private DatabaseReference baseRef;
+    private static String head;
     private RatSightingsListView.MyAdapter adapter;
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
     }
+
+    public static String getHead() {return head;}
 
     public static Model getInstance() {
         return instance;
@@ -64,6 +67,9 @@ public class Model {
                 sightingsTemp = new ArrayList<RatSighting>();
                 int count = 0;
                 try {
+                    if (head == null) {
+                        head = (String) dataSnapshot.child("head").getValue();
+                    }
                     Iterator<DataSnapshot> thing = dataSnapshot.child("RatSightings").getChildren().iterator();
                     while (thing.hasNext() && count < 20) {
                         sightingsTemp.add(thing.next().getValue(RatSighting.class));
@@ -121,5 +127,16 @@ public class Model {
     }
     public void setCurrentSighting(RatSighting c) {
         current = c;
+    }
+
+    public void addRatSighting(RatSighting newAdd) {
+        Integer headInt = Integer.parseInt(head);
+        headInt = headInt + 1;
+        baseRef.child("RatSightings").child(Integer.toString(headInt)).setValue(newAdd);
+        baseRef.child("head").setValue(Integer.toString(headInt));
+    }
+
+    public void addRatSighting(RatSighting newAdd, String position) {
+        baseRef.child("RatSightings").child(position).setValue(newAdd);
     }
 }
