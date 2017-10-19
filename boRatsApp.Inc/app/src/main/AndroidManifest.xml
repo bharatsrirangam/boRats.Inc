@@ -17,8 +17,7 @@
         <activity
             android:name=".LoginUser"
             android:label="Login" />
-        <activity
-            android:name=".WelcomeScreen">
+        <activity android:name=".WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +25,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RatScreen"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Rat Sightings"
-            android:theme="@style/FullscreenTheme" />
-        <activity
             android:name=".RegisterUser"
-            android:label="@string/title_activity_register_user"></activity>
+            android:label="@string/title_activity_register_user" />
+        <activity
+            android:name=".RatSightingsListView"
+            android:label="@string/title_activity_rat_sightings_list_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UserView" />
+        <activity android:name=".RatSightingDetailActivity"></activity>
     </application>
 
 </manifest>
