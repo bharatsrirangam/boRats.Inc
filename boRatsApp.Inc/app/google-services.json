@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "304786262621-sss4nnnludabmp2bm8vs8cj24af8uu59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.boratsinc",
+            "certificate_hash": "5b777487aa0820a2813b67563c3db2d9ff90116f"
+          }
+        },
+        {
           "client_id": "304786262621-5i6t92rvsb0i6dml7t9iir3tsd5dbjou.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

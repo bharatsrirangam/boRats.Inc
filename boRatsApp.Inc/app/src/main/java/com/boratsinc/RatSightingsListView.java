@@ -29,6 +29,7 @@ public class RatSightingsListView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sightings_list_view);
+        Model.getInstance().loadData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,8 +37,9 @@ public class RatSightingsListView extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Context con = view.getContext();
+                Intent intent = new Intent(con, AddRatSighting.class);
+                con.startActivity(intent);
             }
         });
 
@@ -66,6 +68,15 @@ public class RatSightingsListView extends AppCompatActivity {
          */
         public MyAdapter(List<RatSighting> items) {
             mSightingList = items;
+            Model.getInstance().setAdapter(this);
+        }
+
+        public void updateList(List<RatSighting> t) {
+            mSightingList.clear();
+            for(RatSighting rat: t) {
+                mSightingList.add(rat);
+            }
+            notifyDataSetChanged();
         }
 
         @Override
@@ -83,21 +94,11 @@ public class RatSightingsListView extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            Log.d("Test", "Binding position " + position);
             final Model model = Model.getInstance();
-            /*
-            This is where we have to bind each data element in the list (given by position parameter)
-            to an element in the view (which is one of our two TextView widgets
-             */
-            //start by getting the element at the correct position
             holder.mSighting = mSightingList.get(position);
-            /*
-              Now we bind the data to the widgets.  In this case, pretty simple, put the id in one
-              textview and the string rep of a course in the other.
-             */
             holder.mIdView.setText("" + mSightingList.get(position).getKey());
             //holder.mContentView.setText(mSightingList.get(position).toString());
-            holder.mContentView.setText(":" + position);
+            holder.mContentView.setText("");
 
             /*
              * set up a listener to handle if the user clicks on this list item, what should happen?
@@ -105,19 +106,11 @@ public class RatSightingsListView extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                        //on a phone, we need to change windows to the detail view
                         Context context = v.getContext();
-                        //create our new intent with the new screen (activity)
                         Intent intent = new Intent(context, RatSightingDetailActivity.class);
-                        /*
-                            pass along the id of the course so we can retrieve the correct data in
-                            the next window
-                         */
 
                         model.setCurrentSighting(holder.mSighting);
 
-                        //now just display the new window
                         context.startActivity(intent);
                 }
             });
