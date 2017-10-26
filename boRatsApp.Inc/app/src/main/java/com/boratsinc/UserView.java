@@ -26,6 +26,14 @@ public class UserView extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
+        findViewById(R.id.btn_view_map_user_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, MapsActivity.class);
+                context.startActivity(intent);
+            }
+        } );
         findViewById(R.id.logoutbtn_user_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

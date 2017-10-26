@@ -27,6 +27,12 @@
             tools:text="Add Rat Sighting" />
 
         <Button
+            android:id="@+id/btn_view_map_user_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Map" />
+
+        <Button
             android:id="@+id/logoutbtn_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
