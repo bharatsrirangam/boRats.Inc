@@ -1,5 +1,7 @@
 package com.boratsinc;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onMapClick(LatLng latLng) {
-
+                /* Will do nothing for now
 
 
                 // Creating a marker
@@ -61,7 +64,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Setting the position for the marker
                 markerOptions.position(latLng);
 
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                break;
 
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
 
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker
@@ -72,7 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
                 // Placing a marker on the touched position
-                mMap.addMarker(markerOptions);
+                mMap.addMarker(markerOptions);*/
             }
         });
 
@@ -84,6 +103,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+        /* Tried to make the camera zoom in more
+        Double latitude = Double.valueOf(mModel.getCurrentSighting().getLat());
+        Double longitude = Double.valueOf(mModel.getCurrentSighting().getLon());
+        LatLng place = new LatLng(latitude, longitude);
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(place));*/
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
