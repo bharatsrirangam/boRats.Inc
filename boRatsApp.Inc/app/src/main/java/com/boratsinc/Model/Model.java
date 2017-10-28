@@ -26,16 +26,26 @@ public class Model {
     private static final Model instance = new Model();
     List<RatSighting> sightings;
     List<RatSighting> sightingsTemp;
+    private List<User> userList;
     private final RatSighting nullSighting = new RatSighting("Loading Failed", "00/00/000", "NULL", "-1", "NULL", "null", "-1", "-1");
     private final RatSighting loadingSighting = new RatSighting("LOADING", "00/00/0000", "NULL", "-1", "NULL", "null", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
+    private FirebaseDatabase userFire;
     private DatabaseReference baseRef;
+    private DatabaseReference userRef;
     private static String head;
     private RatSightingsListView.MyAdapter adapter;
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
+    }
+
+    public List<User> getUserList() {
+        if (userList == null) {
+            loadUserData();
+        }
+        return userList;
     }
 
     public static String getHead() {return head;}
@@ -99,6 +109,47 @@ public class Model {
                 Log.e("Load", "RatSightings load was cancelled.");
             }
         });
+    }
+
+
+    public void loadUserData() {
+        if (userList == null) {
+            userList = new ArrayList<>();
+        }
+
+        //userList.add(new User("user","name"));
+        userFire = FirebaseDatabase.getInstance();
+        userRef = userFire.getReference();
+        Log.d("UserTakeIn","HELPPPPPPPPP--");
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("UserTakeIn","HELPPPPPPPPP1");
+
+                int count = 0;
+                try {
+                    Iterator<DataSnapshot> thing = dataSnapshot.child("users").getChildren().iterator();
+                    while (thing.hasNext()) {
+                        userList.add(thing.next().getValue(User.class));
+                        Log.d("UserTakeIn","HELPPPPPPPPP2");
+                        count++;
+                    }
+                } catch (Exception e) {
+                    Log.e("Load", "Could not load Users. ", e);
+                    userList.add(new User("user","name"));
+                }
+
+                Log.d("Load", "Loaded " + count + " UserList.");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                userList.add(new User("user","name"));
+                Log.e("Load", "UserList load was cancelled.");
+            }
+        });
+
     }
 
     public List<RatSighting> getSightings() {

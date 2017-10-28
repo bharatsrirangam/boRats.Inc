@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +30,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.boratsinc.Model.Model;
 import com.boratsinc.Model.User;
 
 import java.util.ArrayList;
@@ -94,6 +97,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        Model.getInstance().loadUserData();
     }
 
     private void populateAutoComplete() {
@@ -195,9 +199,11 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
     }
 
     private boolean isUserValid(String username, String password) {
-        List<User> users = ModelBackground.getInstance().getUsers();
+        List<User> users = Model.getInstance().getUserList();
+        Log.d("Load", "|||||||||||\n\n\n\n\n\n\n\n\n " + users.get(0).getName() + " and password: " + users.get(0).getPassword() + " \n\n\n\n\n\n\n\n\n");//        usersAndAdmins.add(new User("user", "name"));
+
         for(User user: users) {
-            if (user.getEmail().equals(username)) {
+            if (user.getName().equals(username)) {
                 return user.getPassword().equals(password);
             }
         }
