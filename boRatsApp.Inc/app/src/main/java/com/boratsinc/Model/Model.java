@@ -27,8 +27,8 @@ public class Model {
     List<RatSighting> sightings;
     List<RatSighting> sightingsTemp;
     private List<User> userList;
-    private final RatSighting nullSighting = new RatSighting("Loading Failed", "00/00/000", "NULL", "-1", "NULL", "null", "-1", "-1");
-    private final RatSighting loadingSighting = new RatSighting("LOADING", "00/00/0000", "NULL", "-1", "NULL", "null", "-1", "-1");
+    private final RatSighting nullSighting = new RatSighting("Loading Failed", "Loading Failed", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
+    private final RatSighting loadingSighting = new RatSighting("LOADING", "LOADING", "00/00/0000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
     private FirebaseDatabase userFire;
@@ -39,6 +39,7 @@ public class Model {
 
     private Model() {
         sightings = new ArrayList<RatSighting>();
+        RatSighting temp = new RatSighting("IDLE", "IDLE", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
     }
 
     public List<User> getUserList() {
@@ -58,10 +59,10 @@ public class Model {
         adapter = a;
     }
 
-    private void loadDummyData() {
-        sightings.add(new RatSighting("1", "1/1/2017", "idk", "77069", "New York City", "bronx", "30", "50"));
-        sightings.add(new RatSighting("2", "1/2/2017", "idk2", "30318", "New York Cityd", "bronasdfax", "3d0", "5sd0"));
-        sightings.add(new RatSighting("1", "1/3/2017", "idk", "77069", "New York City", "bronx", "30", "50"));
+    public void loadDummyData() {
+        sightings.add(new RatSighting("1", "6146", "1/1/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
+        sightings.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
+        sightings.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
         current = sightings.get(0);
     }
 
