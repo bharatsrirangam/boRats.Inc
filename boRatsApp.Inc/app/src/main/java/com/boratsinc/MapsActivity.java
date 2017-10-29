@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
+import com.boratsinc.Model.User;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +25,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Model mModel;
+    private static List<RatSighting> toDisplay;
+
+    public static void setToDisplay(List<RatSighting> newDisplay) {
+        toDisplay = newDisplay;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

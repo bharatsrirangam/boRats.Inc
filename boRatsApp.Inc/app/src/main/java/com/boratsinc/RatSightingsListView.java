@@ -28,6 +28,7 @@ public class RatSightingsListView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Model.getInstance().loadData();
         setContentView(R.layout.activity_rat_sightings_list_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

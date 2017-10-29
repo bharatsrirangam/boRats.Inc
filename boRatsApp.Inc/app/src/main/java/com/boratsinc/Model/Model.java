@@ -3,12 +3,14 @@ package com.boratsinc.Model;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.boratsinc.MapsActivity;
 import com.boratsinc.R;
 import com.boratsinc.RatSightingsListView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
@@ -33,6 +35,7 @@ public class Model {
     private FirebaseDatabase fire;
     private FirebaseDatabase userFire;
     private DatabaseReference baseRef;
+    private DatabaseReference rangeRef;
     private DatabaseReference userRef;
     private static String head;
     private RatSightingsListView.MyAdapter adapter;
@@ -112,6 +115,31 @@ public class Model {
         });
     }
 
+    public void loadDateRangeData(String start, String end) {
+        start = start + "000000";
+        end = end + "000000";
+        final List<RatSighting> rangeList = new ArrayList<>();
+        fire = FirebaseDatabase.getInstance();
+        rangeRef = fire.getReference();
+        Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);
+        Log.d("RANGE","MADE IT");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Data is ordered by increasing height, so we want the first entry
+                Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                while(iterator.hasNext()) {
+                    rangeList.add(iterator.next().getValue(RatSighting.class));
+                    Log.d("rangeList",rangeList.get(rangeList.size()-1).toString());
+                }
+                MapsActivity.setToDisplay(rangeList);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // ...
+            }
+        });
+    }
 
     public void loadUserData() {
         if (userList != null) {

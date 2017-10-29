@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class UserView extends AppCompatActivity {
         setContentView(R.layout.activity_user_view);
 
         //Begin loading Data upon successful login
-        Model.getInstance().loadDummyData();
+        Model.getInstance().loadData();
 
         findViewById(R.id.btn_view_rat_sightings_user_view).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,7 @@ public class UserView extends AppCompatActivity {
                 //Show a pop-up with load error
             } else {
                 //The RatSightings have been loaded, so launch the map as usual
+
                 AlertDialog.Builder builder;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     builder = new AlertDialog.Builder(view.getContext(), android.R.style.Theme_Material_Dialog_Alert);
@@ -85,15 +87,16 @@ public class UserView extends AppCompatActivity {
                 builder.setTitle("Please enter date range")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                String startDate = ((TextView)findViewById(R.id.StartDate)).toString();
-                                String endDate = ((TextView)findViewById(R.id.EndDate)).toString();
-                                if (isValidDates(startDate, endDate)) {
-                                    String[] remake = startDate.split("-");
+                                String startDate = "08/09/2017"; //TODO((TextView)findViewById(R.id.StartDate)).toString();
+                                String endDate = "08/12/2017"; //TODO((TextView)findViewById(R.id.EndDate)).toString();
+                                if (true /*isValidDates(startDate, endDate)*/) {
+                                    String[] remake = startDate.split("//");
                                     startDate = remake[2] + remake[0] + remake[1];
                                     remake = endDate.split("-");
                                     endDate = remake[2] + remake[0] + remake[1];
                                     //TODO: Bharat's Thing
                                     //TODO: Use the two dates above to get a range to get a list of ratsightings.
+                                    Model.getInstance().loadDateRangeData(startDate,endDate);
                                     viewMapScreen();
                                 }
                             }
@@ -111,11 +114,7 @@ public class UserView extends AppCompatActivity {
 
     private boolean isValidDates(String start, String end) {
         //TODO: Verify dates
-        if (start.contains("//") || end.contains("//")) {
-            start.replaceAll("//", "-");
-            end.replaceAll("//", "-");
-        }
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("MM//dd//yyyy");
         Date startD;
         Date endD;
         try {
