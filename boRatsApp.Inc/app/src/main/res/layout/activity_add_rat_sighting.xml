@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPostalAddress"
-            android:text="Address"
+            android:hint="Address"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Zip Code" />
+            android:hint="Zip Code" />
 
         <EditText
             android:id="@+id/City"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="City" />
+            android:hint="City" />
 
         <EditText
             android:id="@+id/Date"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
-            android:text="Date (mm/dd/yyyy)"
+            android:hint="Date (mm/dd/yyyy)"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="LocationType"
+            android:hint="LocationType"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Latitude"
+            android:hint="Latitude"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Longitude"
+            android:hint="Longitude"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 

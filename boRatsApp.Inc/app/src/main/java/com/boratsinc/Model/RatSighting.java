@@ -27,9 +27,8 @@ public class RatSighting {
 
     }
 
-    public RatSighting(String key, String date, String loc, String zip, String city, String bor, String lat, String longi) {
-        this.key = key;
-        this.incident_address = key;
+    public RatSighting(String address, String date, String loc, String zip, String city, String bor, String lat, String longi) {
+        this.incident_address = address;
         created = date;
         location_type = loc;
         this.incident_zip = zip;

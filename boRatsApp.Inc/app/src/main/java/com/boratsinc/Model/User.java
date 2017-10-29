@@ -6,18 +6,22 @@ package com.boratsinc.Model;
 
 public class User {
     private String password;
-    private String email;
+    private String name;
+
+    public User(){
+
+    }
 
     public User(String e, String p) {
-        email = e;
+        name = e;
         password = p;
     }
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String email) {
+        this.name = email;
     }
 
     public String getPassword() {
