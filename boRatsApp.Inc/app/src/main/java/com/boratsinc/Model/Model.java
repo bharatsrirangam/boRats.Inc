@@ -188,6 +188,10 @@ public class Model {
         baseRef.child("head").setValue(Integer.toString(headInt));
     }
 
+    public void addUser(User newAdd) {
+        userRef.child("users").child(newAdd.getName()).setValue(newAdd);
+    }
+
     public void addRatSighting(RatSighting newAdd, String position) {
         baseRef.child("RatSightings").child(position).setValue(newAdd);
     }

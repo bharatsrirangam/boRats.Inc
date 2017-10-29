@@ -39,6 +39,8 @@ public class WelcomeScreen extends AppCompatActivity {
                 launchRegister();
             }
         });
+        Model.getInstance().loadUserData();
+
     }
 
     private void launchLogin() {

@@ -81,6 +81,7 @@ public class UserView extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO: Bharat's thing here
+//                                inflater.getContext().ge
                                 viewMapScreen();
                             }
                         })
