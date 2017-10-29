@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
@@ -80,8 +81,12 @@ public class UserView extends AppCompatActivity {
                 builder.setTitle("Please enter date range")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                //TODO: Bharat's thing here
-                                viewMapScreen();
+                                String startDate = ((TextView)findViewById(R.id.StartDate)).toString();
+                                String endDate = ((TextView)findViewById(R.id.EndDate)).toString();
+                                if (isValidDates(startDate, endDate)) {
+                                    //TODO: Bharat's Thing
+                                    viewMapScreen();
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -93,6 +98,11 @@ public class UserView extends AppCompatActivity {
                         .setView(inflater.inflate(R.layout.activity_get_date_range, null))
                         .show();
             }
+    }
+
+    private boolean isValidDates(String start, String end) {
+        //TODO: Verify dates
+        return true;
     }
 
     private void viewMapScreen() {
