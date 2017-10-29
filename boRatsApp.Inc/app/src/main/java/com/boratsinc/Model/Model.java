@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import com.boratsinc.MapsActivity;
 import com.boratsinc.R;
 import com.boratsinc.RatSightingsListView;
+import com.boratsinc.UserView;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,8 @@ public class Model {
     private static final Model instance = new Model();
     List<RatSighting> sightings;
     List<RatSighting> sightingsTemp;
+    List<RatSighting> rangeList;
+    boolean wait;
     private List<User> userList;
     private final RatSighting nullSighting = new RatSighting("Loading Failed", "Loading Failed", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
     private final RatSighting loadingSighting = new RatSighting("LOADING", "LOADING", "00/00/0000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
@@ -50,6 +54,10 @@ public class Model {
             loadUserData();
         }
         return userList;
+    }
+
+    public List<RatSighting> getRangeList() {
+        return rangeList;
     }
 
     public static String getHead() {return head;}
@@ -116,9 +124,10 @@ public class Model {
     }
 
     public void loadDateRangeData(String start, String end) {
+        wait = true;
         start = start + "000000";
         end = end + "000000";
-        final List<RatSighting> rangeList = new ArrayList<>();
+        rangeList = new ArrayList<>();
         fire = FirebaseDatabase.getInstance();
         rangeRef = fire.getReference();
         Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);
@@ -132,7 +141,7 @@ public class Model {
                     rangeList.add(iterator.next().getValue(RatSighting.class));
                     Log.d("rangeList",rangeList.get(rangeList.size()-1).toString());
                 }
-                MapsActivity.setToDisplay(rangeList);
+                wait = false;
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

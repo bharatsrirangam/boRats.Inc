@@ -89,14 +89,19 @@ public class UserView extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String startDate = "08/09/2017"; //TODO((TextView)findViewById(R.id.StartDate)).toString();
                                 String endDate = "08/12/2017"; //TODO((TextView)findViewById(R.id.EndDate)).toString();
-                                if (true /*isValidDates(startDate, endDate)*/) {
-                                    String[] remake = startDate.split("//");
+                                if (isValidDates(startDate, endDate)) {
+                                    String[] remake = startDate.split("/");
                                     startDate = remake[2] + remake[0] + remake[1];
-                                    remake = endDate.split("-");
+                                    remake = endDate.split("/");
                                     endDate = remake[2] + remake[0] + remake[1];
                                     //TODO: Bharat's Thing
                                     //TODO: Use the two dates above to get a range to get a list of ratsightings.
                                     Model.getInstance().loadDateRangeData(startDate,endDate);
+                                    try {
+                                        Thread.sleep(15000);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                     viewMapScreen();
                                 }
                             }
@@ -114,7 +119,8 @@ public class UserView extends AppCompatActivity {
 
     private boolean isValidDates(String start, String end) {
         //TODO: Verify dates
-        SimpleDateFormat format = new SimpleDateFormat("MM//dd//yyyy");
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         Date startD;
         Date endD;
         try {
@@ -122,12 +128,18 @@ public class UserView extends AppCompatActivity {
             endD = format.parse(end);
 
             if(startD.after(endD)) {
+                Log.d("Bool","TRUE1");
+
                 return false;
             }
 
         } catch (ParseException e) {
+            Log.d("Bool","TRUE2" + e.getMessage() + "\n" + e.getStackTrace());
+
             return false;
         }
+
+        Log.d("Bool","TRUE");
 
         return true;
     }
