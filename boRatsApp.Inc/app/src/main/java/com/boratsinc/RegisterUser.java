@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -30,6 +31,7 @@ import android.widget.Spinner;
 
 
 import com.boratsinc.Model.Admin;
+import com.boratsinc.Model.Model;
 import com.boratsinc.Model.User;
 
 import java.util.ArrayList;
@@ -243,6 +245,12 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
 
     private boolean isUsernameValid(String username) {
         //TODO: Replace this with your own logic
+        List<User> currentList = Model.getInstance().getUserList();
+        for (User user : currentList) {
+            if (user.getName().equals(username)) {
+                return false;
+            }
+        }
         return username.length() >= 4;
     }
 

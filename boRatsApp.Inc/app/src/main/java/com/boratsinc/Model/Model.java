@@ -114,6 +114,9 @@ public class Model {
 
 
     public void loadUserData() {
+        if (userList != null) {
+            return;
+        }
         if (userList == null) {
             userList = new ArrayList<>();
         }

@@ -14,6 +14,10 @@ import android.widget.TextView;
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UserView extends AppCompatActivity {
 
     @Override
@@ -84,7 +88,12 @@ public class UserView extends AppCompatActivity {
                                 String startDate = ((TextView)findViewById(R.id.StartDate)).toString();
                                 String endDate = ((TextView)findViewById(R.id.EndDate)).toString();
                                 if (isValidDates(startDate, endDate)) {
+                                    String[] remake = startDate.split("-");
+                                    startDate = remake[2] + remake[0] + remake[1];
+                                    remake = endDate.split("-");
+                                    endDate = remake[2] + remake[0] + remake[1];
                                     //TODO: Bharat's Thing
+                                    //TODO: Use the two dates above to get a range to get a list of ratsightings.
                                     viewMapScreen();
                                 }
                             }
@@ -102,6 +111,25 @@ public class UserView extends AppCompatActivity {
 
     private boolean isValidDates(String start, String end) {
         //TODO: Verify dates
+        if (start.contains("//") || end.contains("//")) {
+            start.replaceAll("//", "-");
+            end.replaceAll("//", "-");
+        }
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+        Date startD;
+        Date endD;
+        try {
+            startD = format.parse(start);
+            endD = format.parse(end);
+
+            if(startD.after(endD)) {
+                return false;
+            }
+
+        } catch (ParseException e) {
+            return false;
+        }
+
         return true;
     }
 
