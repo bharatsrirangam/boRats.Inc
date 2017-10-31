@@ -47,6 +47,10 @@ public class Model {
     private Model() {
         sightings = new ArrayList<RatSighting>();
         RatSighting temp = new RatSighting("IDLE", "IDLE", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
+        sightings.add(temp);
+
+        rangeList = new ArrayList<RatSighting>();
+        rangeList.add(temp);
     }
 
     public List<User> getUserList() {
@@ -75,6 +79,13 @@ public class Model {
         sightings.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
         sightings.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
         current = sightings.get(0);
+    }
+
+    public void loadDummyRangeData() {
+        rangeList = new ArrayList<>();
+        rangeList.add(new RatSighting("1", "6146", "1/1/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
+        rangeList.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
+        rangeList.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
     }
 
     public void loadData() {
@@ -128,6 +139,7 @@ public class Model {
         start = start + "000000";
         end = end + "000000";
         rangeList = new ArrayList<>();
+        rangeList.add(loadingSighting);
         fire = FirebaseDatabase.getInstance();
         rangeRef = fire.getReference();
         Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);

@@ -96,13 +96,10 @@ public class UserView extends AppCompatActivity {
                                     endDate = remake[2] + remake[0] + remake[1];
                                     //TODO: Bharat's Thing
                                     //TODO: Use the two dates above to get a range to get a list of ratsightings.
-                                    Model.getInstance().loadDateRangeData(startDate,endDate);
-                                    try {
-                                        Thread.sleep(15000);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                    viewMapScreen();
+                                    //Model.getInstance().loadDateRangeData(startDate,endDate);
+                                    Model.getInstance().loadDummyRangeData();
+                                    //go to a loading screen to wait for the dates to load.
+                                    viewMapLoadingScreen();
                                 }
                             }
                         })
@@ -118,8 +115,6 @@ public class UserView extends AppCompatActivity {
     }
 
     private boolean isValidDates(String start, String end) {
-        //TODO: Verify dates
-
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         Date startD;
         Date endD;
@@ -144,8 +139,8 @@ public class UserView extends AppCompatActivity {
         return true;
     }
 
-    private void viewMapScreen() {
-        Intent intent = new Intent(this, MapsActivity.class);
+    private void viewMapLoadingScreen() {
+        Intent intent = new Intent(this, MapLoadingActivity.class);
         startActivity(intent);
     }
 
