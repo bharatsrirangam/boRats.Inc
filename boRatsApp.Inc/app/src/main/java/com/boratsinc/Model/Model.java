@@ -86,6 +86,9 @@ public class Model {
         rangeList.add(new RatSighting("1", "6146", "1/1/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
         rangeList.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
         rangeList.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
+
+        Log.d("Load", "Dummy Range Data has been loaded.");
+        Log.d("Load", "Element 0 of rangeList: " + rangeList.get(0).getIncident_address());
     }
 
     public void loadData() {
@@ -135,6 +138,7 @@ public class Model {
     }
 
     public void loadDateRangeData(String start, String end) {
+        Log.d("rangeList", "Beginning loading of rangeList");
         wait = true;
         start = start + "000000";
         end = end + "000000";
@@ -143,16 +147,23 @@ public class Model {
         fire = FirebaseDatabase.getInstance();
         rangeRef = fire.getReference();
         Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);
-        Log.d("RANGE","MADE IT");
+        Log.d("rangeList","Completed querying");
+        Log.d("rangeListTest", "Size of list: " + rangeList.size());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Data is ordered by increasing height, so we want the first entry
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                int count = 0;
                 while(iterator.hasNext()) {
                     rangeList.add(iterator.next().getValue(RatSighting.class));
+                    count++;
                     Log.d("rangeList",rangeList.get(rangeList.size()-1).toString());
                 }
+                if (rangeList.get(0).getIncident_address().equals("LOADING")) {
+                    rangeList.remove(0);
+                }
+                Log.d("rangeList", "I loaded " + count + " items");
                 wait = false;
             }
             @Override

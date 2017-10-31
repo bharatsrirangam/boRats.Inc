@@ -68,50 +68,39 @@ public class UserView extends AppCompatActivity {
     }
 
     private void ViewMap(View view) {
-            String currentRatAddress = Model.getInstance().getCurrentSighting().getIncident_address();
-
-            if (currentRatAddress.equals("LOADING") || currentRatAddress.equals("IDLE")) {
-                //Display loading screen
-            } else if (currentRatAddress.equals("Loading Failed")) {
-                //Show a pop-up with load error
-            } else {
-                //The RatSightings have been loaded, so launch the map as usual
-
-                AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(view.getContext(), android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new AlertDialog.Builder(view.getContext());
-                }
-                LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                builder.setTitle("Please enter date range")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                String startDate = "08/09/2017"; //TODO((TextView)findViewById(R.id.StartDate)).toString();
-                                String endDate = "08/12/2017"; //TODO((TextView)findViewById(R.id.EndDate)).toString();
-                                if (isValidDates(startDate, endDate)) {
-                                    String[] remake = startDate.split("/");
-                                    startDate = remake[2] + remake[0] + remake[1];
-                                    remake = endDate.split("/");
-                                    endDate = remake[2] + remake[0] + remake[1];
-                                    //TODO: Bharat's Thing
-                                    //TODO: Use the two dates above to get a range to get a list of ratsightings.
-                                    //Model.getInstance().loadDateRangeData(startDate,endDate);
-                                    Model.getInstance().loadDummyRangeData();
-                                    //go to a loading screen to wait for the dates to load.
-                                    viewMapLoadingScreen();
-                                }
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setView(inflater.inflate(R.layout.activity_get_date_range, null))
-                        .show();
-            }
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(view.getContext(), android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(view.getContext());
+        }
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        builder.setTitle("Please enter date range")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String startDate = "08/09/2017"; //TODO((TextView)findViewById(R.id.StartDate)).toString();
+                        String endDate = "08/12/2017"; //TODO((TextView)findViewById(R.id.EndDate)).toString();
+                        if (isValidDates(startDate, endDate)) {
+                            String[] remake = startDate.split("/");
+                            startDate = remake[2] + remake[0] + remake[1];
+                            remake = endDate.split("/");
+                            endDate = remake[2] + remake[0] + remake[1];
+                            //TODO: Bharat's Thing
+                            //TODO: Use the two dates above to get a range to get a list of ratsightings.
+                            Model.getInstance().loadDateRangeData(startDate,endDate);
+                            //go to a loading screen to wait for the dates to load.
+                            viewMapLoadingScreen();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setView(inflater.inflate(R.layout.activity_get_date_range, null))
+                .show();
     }
 
     private boolean isValidDates(String start, String end) {

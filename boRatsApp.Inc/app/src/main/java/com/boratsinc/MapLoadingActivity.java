@@ -18,14 +18,15 @@ public class MapLoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map_loading);
 
         List<RatSighting> sightings = Model.getInstance().getRangeList();
-
-        while(sightings.get(0).getIncident_address().equals("LOADING")) {
+        int count = 0;
+        while(sightings.size() > 0 && sightings.get(0).getIncident_address().equals("LOADING")) {
             try{
                 Thread.sleep(1000);
             } catch(InterruptedException e) {
                 Log.d("Load", "Could not continue checking the range list to see if it has loaded.");
             }
             sightings = Model.getInstance().getRangeList();
+            Log.d("Map Attempt", "Load attempt " + count++);
         }
 
         Intent intent = new Intent(this, MapsActivity.class);
