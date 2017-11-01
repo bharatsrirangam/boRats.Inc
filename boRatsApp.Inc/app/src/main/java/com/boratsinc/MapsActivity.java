@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
+import com.boratsinc.Model.User;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +26,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Model mModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        List<RatSighting> reportList = mModel.getSightings();
+        List<RatSighting> reportList = Model.getInstance().getRangeList();
         for (RatSighting r : reportList) {
+            Log.d("",r.toString());
             LatLng loc = new LatLng(Double.valueOf(r.getLat()), Double.valueOf(r.getLon()));
             mMap.addMarker(new MarkerOptions().position(loc).title(r.getKey()).snippet(r.toString()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));

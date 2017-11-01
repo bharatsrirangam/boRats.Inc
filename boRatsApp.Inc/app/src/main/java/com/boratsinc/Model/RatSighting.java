@@ -17,6 +17,17 @@ public class RatSighting {
     private String city;
     private String borough;
     private String lat, lon;
+    private String date_num;
+
+
+    public String getDate_num() {
+        return date_num;
+    }
+
+    public void setDate_num(String date_num) {
+        this.date_num = date_num;
+    }
+
     public static final List<String> legalBoroughs = Arrays.asList("Manhattan", "Staten Island", "Queens", "Brooklyn", "Bronx");
 
     public RatSighting(int key) {
