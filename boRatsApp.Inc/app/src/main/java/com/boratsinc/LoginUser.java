@@ -66,6 +66,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        mPasswordView = ((EditText) findViewById(R.id.password));
         populateAutoComplete();
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
@@ -130,9 +131,11 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
+
         if (mAuthTask != null) {
             return;
         }
+
 
         // Reset errors.
         mUsernameView.setError(null);
@@ -145,7 +148,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+
         if (Model.getInstance().getUserList() == null || Model.getInstance().getUserList().size() == 0) {
             mUsernameView.setError("Please wait while we load");
             focusView = mUsernameView;
@@ -179,12 +182,13 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
             // perform the user login attempt.
             showProgress(true);
 
-            boolean validUser = Model.getInstance().verifyUser(new User(username, password));
-            /*mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);*/
+            /*boolean validUser = Model.getInstance().verifyUser(new User(username, password));
             if (validUser) {
                 launchUserView();
-            }
+            }*/
+            mAuthTask = new UserLoginTask(username, password);
+            mAuthTask.execute((Void) null);
+
 
         }
     }

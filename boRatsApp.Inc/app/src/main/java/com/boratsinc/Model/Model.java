@@ -182,7 +182,7 @@ public class Model {
         return false;
     }
 
-    private void loadUserDataBase() {
+    public void loadUserDataBase() {
         Log.d("UserTakeIn","Loading Users");
         userList = new ArrayList<>();
         userFire = FirebaseDatabase.getInstance();
