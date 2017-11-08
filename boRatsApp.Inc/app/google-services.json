@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "304786262621",
+    "firebase_url": "https://bhoratsdb.firebaseio.com",
+    "project_id": "bhoratsdb",
+    "storage_bucket": "bhoratsdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304786262621:android:e1557df4c1ceda2b",
+        "android_client_info": {
+          "package_name": "com.boratsinc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "304786262621-sss4nnnludabmp2bm8vs8cj24af8uu59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.boratsinc",
+            "certificate_hash": "5b777487aa0820a2813b67563c3db2d9ff90116f"
+          }
+        },
+        {
+          "client_id": "304786262621-5i6t92rvsb0i6dml7t9iir3tsd5dbjou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.boratsinc",
+            "certificate_hash": "09155b3637185be577b3cd8fcc72eed8d5c7f322"
+          }
+        },
+        {
+          "client_id": "304786262621-2h26eqga61j87egqa2gfkk411t2908t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRz8IY0S4lrBhq2ajJ0_Wp661DlAdptGo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "304786262621-2h26eqga61j87egqa2gfkk411t2908t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
