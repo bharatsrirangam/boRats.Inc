@@ -47,6 +47,12 @@ public class UserView extends AppCompatActivity {
                 ViewMap(view);
             }
         } );
+        findViewById(R.id.btn_view_chart_user_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ViewChart(view);
+            }
+        } );
         findViewById(R.id.logoutbtn_user_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +71,41 @@ public class UserView extends AppCompatActivity {
         Context context = view.getContext();
         Intent intent = new Intent(context, AddRatSighting.class);
         startActivity(intent);
+    }
+
+    private void ViewChart(View view) {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(view.getContext(), android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(view.getContext());
+        }
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        builder.setTitle("Please enter date range")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String startDate = "08/09/2017"; //TODO((TextView)findViewById(R.id.StartDate)).toString();
+                        String endDate = "08/12/2017"; //TODO((TextView)findViewById(R.id.EndDate)).toString();
+                        if (isValidDates(startDate, endDate)) {
+                            String[] remake = startDate.split("/");
+                            startDate = remake[2] + remake[0] + remake[1];
+                            remake = endDate.split("/");
+                            endDate = remake[2] + remake[0] + remake[1];
+                            //TODO: Bharat's Thing
+                            //TODO: Use the two dates above to get a range to get a list of ratsightings.
+                            Model.getInstance().loadDateRangeData(startDate,endDate);
+                            viewChartScreen();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setView(inflater.inflate(R.layout.activity_get_date_range, null))
+                .show();
     }
 
     private void ViewMap(View view) {
@@ -126,6 +167,11 @@ public class UserView extends AppCompatActivity {
         Log.d("Bool","TRUE");
 
         return true;
+    }
+
+    private void viewChartScreen() {
+        Intent intent = new Intent(this, ChartActivity.class);
+        startActivity(intent);
     }
 
     private void viewMapLoadingScreen() {
