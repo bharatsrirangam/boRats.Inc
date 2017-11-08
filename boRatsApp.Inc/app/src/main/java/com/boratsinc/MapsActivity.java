@@ -99,8 +99,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         List<RatSighting> reportList = Model.getInstance().getRangeList();
+        int count = 0;
         for (RatSighting r : reportList) {
-            Log.d("",r.toString());
+            Log.d("Map Display","RatSighting " + count + ": " + r.toString());
             LatLng loc = new LatLng(Double.valueOf(r.getLat()), Double.valueOf(r.getLon()));
             mMap.addMarker(new MarkerOptions().position(loc).title(r.getKey()).snippet(r.toString()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));

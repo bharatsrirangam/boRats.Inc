@@ -7,9 +7,7 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.TextView;
 
-import com.boratsinc.LoginUser;
 import com.boratsinc.Model.Model;
-import com.boratsinc.RegisterUser;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -39,7 +37,7 @@ public class WelcomeScreen extends AppCompatActivity {
                 launchRegister();
             }
         });
-        Model.getInstance().loadUserData();
+        Model.getInstance().loadUserDataBase();
 
     }
 

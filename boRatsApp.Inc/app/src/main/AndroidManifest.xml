@@ -56,7 +56,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".GetDateRangeActivity"></activity>
+        <activity android:name=".GetDateRangeActivity" />
+        <activity android:name=".MapLoadingActivity" />
+        <activity android:name=".ChartActivity"></activity>
     </application>
 
 </manifest>

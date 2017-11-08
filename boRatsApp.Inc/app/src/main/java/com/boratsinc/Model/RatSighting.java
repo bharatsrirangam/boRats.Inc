@@ -17,7 +17,7 @@ public class RatSighting {
     private String city;
     private String borough;
     private String lat, lon;
-    private String date_num;
+    private String date_num; //YYYYMMDD??????
 
 
     public String getDate_num() {
