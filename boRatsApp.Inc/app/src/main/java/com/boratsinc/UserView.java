@@ -18,6 +18,7 @@ import com.boratsinc.Model.RatSighting;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class UserView extends AppCompatActivity {
 
@@ -145,7 +146,7 @@ public class UserView extends AppCompatActivity {
     }
 
     private boolean isValidDates(String start, String end) {
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         Date startD;
         Date endD;
         try {
