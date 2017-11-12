@@ -24,7 +24,6 @@ import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
     private Model mModel;
 
 
@@ -52,9 +51,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
         // Setting a click event handler for the map
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
             public void onMapClick(LatLng latLng) {
@@ -103,11 +101,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (RatSighting r : reportList) {
             Log.d("Map Display","RatSighting " + count + ": " + r.toString());
             LatLng loc = new LatLng(Double.valueOf(r.getLat()), Double.valueOf(r.getLon()));
-            mMap.addMarker(new MarkerOptions().position(loc).title(r.getKey()).snippet(r.toString()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            googleMap.addMarker(new MarkerOptions().position(loc).title(r.getKey()).snippet(r.toString()));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
         /* Tried to make the camera zoom in more
         Double latitude = Double.valueOf(mModel.getCurrentSighting().getLat());

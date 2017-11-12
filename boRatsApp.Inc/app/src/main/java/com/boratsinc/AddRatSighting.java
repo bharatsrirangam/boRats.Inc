@@ -28,7 +28,7 @@ public class AddRatSighting extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String address = ((EditText) findViewById(R.id.Address)).getText().toString();
-                String created = ((EditText) findViewById(R.id.Date)).getText().toString();;
+                String created = ((EditText) findViewById(R.id.Date)).getText().toString();
                 String location_type = ((EditText) findViewById(R.id.LocationType)).getText().toString();
                 String incident_zip = ((EditText) findViewById(R.id.ZipCode)).getText().toString();
                 String city = ((EditText) findViewById(R.id.City)).getText().toString();

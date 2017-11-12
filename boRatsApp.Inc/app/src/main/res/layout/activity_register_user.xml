@@ -73,7 +73,7 @@
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="Select User Type"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:layout_weight="2.13" />

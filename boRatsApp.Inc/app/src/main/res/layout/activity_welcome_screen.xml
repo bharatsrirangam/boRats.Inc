@@ -18,7 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="188dp"
-        android:text="@string/WelcomeButtonText"
+        android:text="@string/Login"
         tools:layout_editor_absoluteX="250dp"
         tools:layout_editor_absoluteY="40dp" />
 

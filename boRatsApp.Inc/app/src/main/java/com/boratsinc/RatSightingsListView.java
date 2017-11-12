@@ -22,8 +22,6 @@ import com.boratsinc.Model.RatSighting;
 import java.util.List;
 
 public class RatSightingsListView extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +42,13 @@ public class RatSightingsListView extends AppCompatActivity {
         });
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rat_sightings_list);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rat_sightings_list);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         List<RatSighting> modelList = Model.getInstance().getSightings();
-        mAdapter = new MyAdapter(modelList);
+        RecyclerView.Adapter mAdapter = new MyAdapter(modelList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -96,7 +94,7 @@ public class RatSightingsListView extends AppCompatActivity {
         public void onBindViewHolder(final ViewHolder holder, int position) {
             final Model model = Model.getInstance();
             holder.mSighting = mSightingList.get(position);
-            holder.mIdView.setText("" + mSightingList.get(position).getKey());
+            holder.mIdView.setText(mSightingList.get(position).getKey());
             //holder.mContentView.setText(mSightingList.get(position).toString());
             holder.mContentView.setText("");
 

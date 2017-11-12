@@ -102,18 +102,21 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/cancelbtn_add_rat_sighting"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
+
+            <Button
                 android:id="@+id/addbtn_add_rat_sighting"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Add" />
 
-            <Button
-                android:id="@+id/cancelbtn_add_rat_sighting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Cancel" />
         </LinearLayout>
     </LinearLayout>
 

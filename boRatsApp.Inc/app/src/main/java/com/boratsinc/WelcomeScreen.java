@@ -11,15 +11,12 @@ import com.boratsinc.Model.Model;
 
 public class WelcomeScreen extends AppCompatActivity {
 
-    private Button loginButton;
-    private TextView registerText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        loginButton = (Button) findViewById(R.id.button);
+        Button loginButton = (Button) findViewById(R.id.button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +26,7 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         });
 
-        registerText = (TextView) findViewById(R.id.register);
+        TextView registerText = (TextView) findViewById(R.id.register);
         registerText.setClickable(true);
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,9 +17,6 @@ public class GetDateRangeActivity extends AppCompatActivity {
 
     public boolean datesAreValid(String s, String e) {
         //TODO: Make this valid
-        if (!(s.equals("") || e.equals(""))) {
-            return true;
-        }
-        return false;
+        return !(s.equals("") || e.equals(""));
     }
 }
