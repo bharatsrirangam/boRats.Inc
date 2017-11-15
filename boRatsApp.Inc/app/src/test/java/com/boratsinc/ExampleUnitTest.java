@@ -14,4 +14,12 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void addRatCorrectly() {
+        //instantiate class
+        //check if it says loading
+        //add one
+        //check if it got added
+        //add another for simplicity
+    }
 }

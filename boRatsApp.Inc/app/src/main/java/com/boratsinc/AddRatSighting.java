@@ -19,12 +19,12 @@ public class AddRatSighting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rat_sighting);
 
-        final Spinner boroughSpinner = (Spinner) findViewById(R.id.BoroughSpinner);
+        final Spinner boroughSpinner = findViewById(R.id.BoroughSpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, RatSighting.legalBoroughs);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boroughSpinner.setAdapter(adapter);
 
-        findViewById(R.id.addbtn_add_rat_sighting).setOnClickListener(new View.OnClickListener()    {
+        findViewById(R.id.btn_add_add_rat_sighting).setOnClickListener(new View.OnClickListener()    {
             @Override
             public void onClick(View v) {
                 String address = ((EditText) findViewById(R.id.Address)).getText().toString();
@@ -42,7 +42,7 @@ public class AddRatSighting extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.cancelbtn_add_rat_sighting).setOnClickListener(new View.OnClickListener()    {
+        findViewById(R.id.btn_cancel_add_rat_sighting).setOnClickListener(new View.OnClickListener()    {
             @Override
             public void onClick(View v) {
                 finish();

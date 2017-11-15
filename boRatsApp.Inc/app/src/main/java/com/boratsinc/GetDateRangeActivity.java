@@ -14,9 +14,4 @@ public class GetDateRangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_date_range);
     }
-
-    public boolean datesAreValid(String s, String e) {
-        //TODO: Make this valid
-        return !(s.equals("") || e.equals(""));
-    }
 }

@@ -36,7 +36,7 @@ public class UserView extends AppCompatActivity {
                 ViewRatSightings(view);
             }
         });
-        findViewById(R.id.addbtn_user_view).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_add_user_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                ViewAddRatSighting(view);
@@ -54,7 +54,7 @@ public class UserView extends AppCompatActivity {
                 ViewChart(view);
             }
         } );
-        findViewById(R.id.logoutbtn_user_view).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_logout_user_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Logout(view);
@@ -128,7 +128,7 @@ public class UserView extends AppCompatActivity {
                             remake = endDate.split("/");
                             endDate = remake[2] + remake[0] + remake[1];
                             //TODO: Bharat's Thing
-                            //TODO: Use the two dates above to get a range to get a list of ratsightings.
+                            //TODO: Use the two dates above to get a range to get a list of ratSightings.
                             Model.getInstance().loadDateRangeData(startDate,endDate);
                             //go to a loading screen to wait for the dates to load.
                             viewMapLoadingScreen();

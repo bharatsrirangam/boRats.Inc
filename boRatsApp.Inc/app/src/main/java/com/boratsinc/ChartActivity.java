@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ChartActivity extends AppCompatActivity {
 
-    private Model model = Model.getInstance();
+    final private Model model = Model.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +31,12 @@ public class ChartActivity extends AppCompatActivity {
 
         List<Entry> entries = convertDataSetToEntry(model.getSightings());
 
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+        LineDataSet dataSet = new LineDataSet(entries, "# of Calls");
 
-        Log.d("APP", "Made dataset with : " + entries.size());
+        Log.d("APP", "Made dataSet with : " + entries.size());
 
-        LineData data = new LineData(dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+        LineData data = new LineData(dataSet);
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         // the labels that should be drawn on the XAxis
         final String[] months = new String[] { "January", "February",  "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
@@ -54,7 +54,7 @@ public class ChartActivity extends AppCompatActivity {
         xAxis.setValueFormatter(formatter);
         //End setting x-axis labels
 
-        dataset.setDrawFilled(true);
+        dataSet.setDrawFilled(true);
 
         lineChart.setData(data);
         lineChart.animateY(5000);

@@ -102,7 +102,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/cancelbtn_add_rat_sighting"
+                android:id="@+id/btn_cancel_add_rat_sighting"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 android:text="Cancel" />
 
             <Button
-                android:id="@+id/addbtn_add_rat_sighting"
+                android:id="@+id/btn_add_add_rat_sighting"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

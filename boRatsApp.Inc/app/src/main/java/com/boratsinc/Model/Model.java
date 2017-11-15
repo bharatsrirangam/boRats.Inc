@@ -20,10 +20,9 @@ import java.util.List;
 
 public class Model {
     private static final Model instance = new Model();
-    List<RatSighting> sightings;
-    List<RatSighting> sightingsTemp;
-    List<RatSighting> rangeList;
-    boolean wait;
+    private List<RatSighting> sightings;
+    private List<RatSighting> sightingsTemp;
+    private List<RatSighting> rangeList;
     private List<User> userList;
     private final RatSighting nullSighting = new RatSighting("Loading Failed", "Loading Failed", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
     private final RatSighting loadingSighting = new RatSighting("LOADING", "LOADING", "00/00/0000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
@@ -73,7 +72,7 @@ public class Model {
     public void loadDummyData() {
         sightings = new ArrayList<>();
         sightings.add(new RatSighting("1", "6146", "01/01/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
-        sightings.add(new RatSighting("2", "7126", "02/02/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
+        sightings.add(new RatSighting("2", "7126", "02/02/2005", "idk2", "30318", "Rochester", "brooklyn", "35", "50"));
         sightings.add(new RatSighting("3", "1983", "03/01/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
         sightings.add(new RatSighting("4", "4568", "03/03/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
         current = sightings.get(0);
@@ -138,7 +137,6 @@ public class Model {
 
     public void loadDateRangeData(String start, String end) {
         Log.d("rangeList", "Beginning loading of rangeList");
-        wait = true;
         start = start + "000000";
         end = end + "000000";
         rangeList = new ArrayList<>();
@@ -163,7 +161,6 @@ public class Model {
                     rangeList.remove(0);
                 }
                 Log.d("rangeList", "I loaded " + count + " items");
-                wait = false;
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -172,7 +169,7 @@ public class Model {
         });
     }
 
-    public boolean verifyUser(User user) {
+    /*public boolean verifyUser(User user) {
         if (userList == null) {
             loadUserDataBase();
         }
@@ -180,7 +177,7 @@ public class Model {
         //verify user
 
         return false;
-    }
+    }*/
 
     public void loadUserDataBase() {
         Log.d("UserTakeIn","Loading Users");

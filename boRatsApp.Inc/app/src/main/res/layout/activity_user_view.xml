@@ -32,7 +32,7 @@
             android:text="View Rat Sightings" />
 
         <Button
-            android:id="@+id/addbtn_user_view"
+            android:id="@+id/btn_add_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Rat Sighting"
@@ -51,7 +51,7 @@
             android:text="View Chart" />
 
         <Button
-            android:id="@+id/logoutbtn_user_view"
+            android:id="@+id/btn_logout_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Logout" />

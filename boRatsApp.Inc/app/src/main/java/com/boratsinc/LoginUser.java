@@ -52,7 +52,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    //private UserLoginTask mAuthTask = null;
 
     // UI references.
     private AutoCompleteTextView mUsernameView;
@@ -132,9 +132,9 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
      */
     private void attemptLogin() {
 
-        if (mAuthTask != null) {
-            return;
-        }
+//        if (mAuthTask != null) {
+//            return;
+//        }
 
 
         // Reset errors.
@@ -154,7 +154,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
             focusView = mUsernameView;
             cancel = true;
         } else {
-            if (TextUtils.isEmpty(password)) {
+            if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
                 mPasswordView.setError("Please enter a password.");
                 focusView = mPasswordView;
                 cancel = true;
@@ -180,14 +180,14 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+//            showProgress(true);
 
             /*boolean validUser = Model.getInstance().verifyUser(new User(username, password));
             if (validUser) {
-                launchUserView();
             }*/
-            mAuthTask = new UserLoginTask(username, password);
-            mAuthTask.execute((Void) null);
+//            mAuthTask = new UserLoginTask(username, password);
+//            mAuthTask.execute((Void) null);
+            launchUserView();
 
 
         }
@@ -208,38 +208,38 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return true;
+        return password.length() > 0;
     }
 
-    /**
+    /*
      * Shows the progress UI and hides the login form.
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            }
-        });
-
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mProgressView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            }
-        });
-
-    }
+//    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+//    private void showProgress(final boolean show) {
+//        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
+//        // for very easy animations. If available, use these APIs to fade-in
+//        // the progress spinner.
+//        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+//
+//        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+//        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+//                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+//            }
+//        });
+//
+//        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+//        mProgressView.animate().setDuration(shortAnimTime).alpha(
+//                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+//            }
+//        });
+//
+//    }
 
     private void launchUserView() {
         Intent intent = new Intent(this, UserView.class);
@@ -297,59 +297,59 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         };
 
         int ADDRESS = 0;
-        int IS_PRIMARY = 1;
+        //int IS_PRIMARY = 1;
     }
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mUsername;
-        private final String mPassword;
-        private boolean wrongEmail = false;
-
-        UserLoginTask(String email, String password) {
-            mUsername = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-            /*List<User> users = Model.getInstance().getUserList();
-            Log.d("Load", "|||||||||||\n\n\n\n\n\n\n\n\n " + users.get(0).getName() + " and password: " + users.get(0).getPassword() + " \n\n\n\n\n\n\n\n\n");//        usersAndAdmins.add(new User("user", "name"));
-
-            for(User user: users) {
-                if (user.getName().equals(mUsername)) {
-                    return user.getPassword().equals(mPassword);
-                }
-            }
-            return false;*/
-
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-                launchUserView();
-            } else {
-                mPasswordView.setError("Please wait while loading");
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
+//    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+//
+//        private final String mUsername;
+//        private final String mPassword;
+//        private boolean wrongEmail = false;
+//
+//        UserLoginTask(String email, String password) {
+//            mUsername = email;
+//            mPassword = password;
+//        }
+//
+//        @Override
+//        protected Boolean doInBackground(Void... params) {
+//            // TODO: attempt authentication against a network service.
+//            /*List<User> users = Model.getInstance().getUserList();
+//            Log.d("Load", "|||||||||||\n\n\n\n\n\n\n\n\n " + users.get(0).getName() + " and password: " + users.get(0).getPassword() + " \n\n\n\n\n\n\n\n\n");//        usersAndAdmins.add(new User("user", "name"));
+//
+//            for(User user: users) {
+//                if (user.getName().equals(mUsername)) {
+//                    return user.getPassword().equals(mPassword);
+//                }
+//            }
+//            return false;*/
+//
+//            return true;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(final Boolean success) {
+//            mAuthTask = null;
+//            showProgress(false);
+//
+//            if (success) {
+//                finish();
+//                launchUserView();
+//            } else {
+//                mPasswordView.setError("Please wait while loading");
+//                mPasswordView.requestFocus();
+//            }
+//        }
+//
+//        @Override
+//        protected void onCancelled() {
+//            mAuthTask = null;
+//            showProgress(false);
+//        }
+//    }
 }
 
