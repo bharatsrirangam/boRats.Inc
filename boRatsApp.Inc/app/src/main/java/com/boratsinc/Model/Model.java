@@ -169,16 +169,6 @@ public class Model {
         });
     }
 
-    /*public boolean verifyUser(User user) {
-        if (userList == null) {
-            loadUserDataBase();
-        }
-
-        //verify user
-
-        return false;
-    }*/
-
     public void loadUserDataBase() {
         Log.d("UserTakeIn","Loading Users");
         userList = new ArrayList<>();
