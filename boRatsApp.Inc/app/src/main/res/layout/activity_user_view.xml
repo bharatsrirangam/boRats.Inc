@@ -29,31 +29,31 @@
             android:id="@+id/btn_view_rat_sightings_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Rat Sightings" />
+            android:text="@string/View_Rat" />
 
         <Button
             android:id="@+id/btn_add_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Rat Sighting"
+            android:text="@string/Add_Rat"
             tools:text="Add Rat Sighting" />
 
         <Button
             android:id="@+id/btn_view_map_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Map" />
+            android:text="@string/View_Map" />
 
         <Button
             android:id="@+id/btn_view_chart_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Chart" />
+            android:text="@string/View_Chart" />
 
         <Button
             android:id="@+id/btn_logout_user_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout" />
+            android:text="@string/Logout" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

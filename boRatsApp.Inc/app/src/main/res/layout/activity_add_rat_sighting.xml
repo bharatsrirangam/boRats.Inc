@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Address"
+            android:hint="@string/Address"
             android:inputType="textPostalAddress"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="8dp" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Zip Code" />
+            android:hint="@string/Zip_Code" />
 
         <EditText
             android:id="@+id/City"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="City" />
+            android:hint="@string/City" />
 
         <EditText
             android:id="@+id/Date"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
-            android:hint="Date (mm/dd/yyyy)"
+            android:hint="@string/Date"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="8dp" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="LocationType"
+            android:hint="@string/Location_Type"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:hint="Latitude"
+            android:hint="@string/Latitude"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:hint="Longitude"
+            android:hint="@string/Longitude"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cancel" />
+                android:text="@string/Cancel" />
 
             <Button
                 android:id="@+id/btn_add_add_rat_sighting"
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Add" />
+                android:text="@string/Add" />
 
         </LinearLayout>
     </LinearLayout>

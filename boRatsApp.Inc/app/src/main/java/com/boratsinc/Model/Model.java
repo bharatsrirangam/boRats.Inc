@@ -28,9 +28,7 @@ public class Model {
     private final RatSighting loadingSighting = new RatSighting("LOADING", "LOADING", "00/00/0000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
     private RatSighting current;
     private FirebaseDatabase fire;
-    private FirebaseDatabase userFire;
     private DatabaseReference baseRef;
-    private DatabaseReference rangeRef;
     private DatabaseReference userRef;
     private static String head;
     private RatSightingsListView.MyAdapter adapter;
@@ -142,7 +140,7 @@ public class Model {
         rangeList = new ArrayList<>();
         rangeList.add(loadingSighting);
         fire = FirebaseDatabase.getInstance();
-        rangeRef = fire.getReference();
+        DatabaseReference rangeRef = fire.getReference();
         Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);
         Log.d("rangeList","Completed querying");
         Log.d("rangeListTest", "Size of list: " + rangeList.size());
@@ -172,7 +170,7 @@ public class Model {
     public void loadUserDataBase() {
         Log.d("UserTakeIn","Loading Users");
         userList = new ArrayList<>();
-        userFire = FirebaseDatabase.getInstance();
+        FirebaseDatabase userFire = FirebaseDatabase.getInstance();
         userRef = userFire.getReference();
 
         userRef.addValueEventListener(new ValueEventListener() {

@@ -10,6 +10,6 @@
         android:id="@+id/Details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/Text_View"
         android:textSize="18sp" />
 </android.support.constraint.ConstraintLayout>

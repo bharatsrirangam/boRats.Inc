@@ -56,7 +56,7 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/Password"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
@@ -67,14 +67,14 @@
                 android:id="@+id/confirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm Password"
+                android:hint="@string/Confirm_Pass"
                 android:inputType="textPassword"/>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="Select User Type"
+                android:text="@string/Select_User_Type"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:layout_weight="2.13" />
 
