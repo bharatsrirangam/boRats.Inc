@@ -1,7 +1,5 @@
 package com.boratsinc;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +8,6 @@ import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
-import com.boratsinc.Model.User;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -115,16 +111,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         private final View myContentsView;
 
+
         CustomInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null, false);
         }
 
         @Override
         public View getInfoContents(Marker marker) {
 
-            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            TextView tvTitle = myContentsView.findViewById(R.id.title);
             tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            TextView tvSnippet = myContentsView.findViewById(R.id.snippet);
             tvSnippet.setText(marker.getSnippet());
 
             return myContentsView;

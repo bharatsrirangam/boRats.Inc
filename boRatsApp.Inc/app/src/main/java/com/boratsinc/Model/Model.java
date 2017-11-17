@@ -14,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created by baseb on 10/10/2017.
- */
+
 
 public class Model {
     private static final Model instance = new Model();
@@ -29,18 +27,16 @@ public class Model {
     private RatSighting current;
     private FirebaseDatabase fire;
     private DatabaseReference baseRef;
-    private FirebaseDatabase userFire;
     private DatabaseReference userRef;
-    private DatabaseReference rangeRef;
     private static String head;
     private RatSightingsListView.MyAdapter adapter;
 
     private Model() {
-        sightings = new ArrayList<RatSighting>();
+        sightings = new ArrayList<>();
         RatSighting temp = new RatSighting("IDLE", "IDLE", "00/00/000", "NULL", "-1", "NULL", "NULL", "-1", "-1");
         sightings.add(temp);
 
-        rangeList = new ArrayList<RatSighting>();
+        rangeList = new ArrayList<>();
         rangeList.add(temp);
     }
 
@@ -79,15 +75,17 @@ public class Model {
         Log.d("Load", "Loaded 4 RatSightings.");
     }
 
-    public void loadDummyRangeData() {
-        rangeList = new ArrayList<>();
-        rangeList.add(new RatSighting("1", "6146", "1/1/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
-        rangeList.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
-        rangeList.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
-
-        Log.d("Load", "Dummy Range Data has been loaded.");
-        Log.d("Load", "Element 0 of rangeList: " + rangeList.get(0).getIncident_address());
-    }
+// --Commented out by Inspection START (11/16/2017 10:33 PM):
+//    public void loadDummyRangeData() {
+//        rangeList = new ArrayList<>();
+//        rangeList.add(new RatSighting("1", "6146", "1/1/1997", "idk", "77069", "New York City", "bronx", "30", "50"));
+//        rangeList.add(new RatSighting("2", "7126", "1/2/2005", "idk2", "30318", "Rochester", "bronasdfax", "35", "50"));
+//        rangeList.add(new RatSighting("3", "1983", "1/3/2017", "idk", "54699", "Appleton", "bronx", "40", "50"));
+//
+//        Log.d("Load", "Dummy Range Data has been loaded.");
+//        Log.d("Load", "Element 0 of rangeList: " + rangeList.get(0).getIncident_address());
+//    }
+// --Commented out by Inspection STOP (11/16/2017 10:33 PM)
 
     public void loadData() {
         sightings = new ArrayList<>();
@@ -98,7 +96,7 @@ public class Model {
         baseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                sightingsTemp = new ArrayList<RatSighting>();
+                sightingsTemp = new ArrayList<>();
                 int count = 0;
                 try {
                     if (head == null) {
@@ -142,7 +140,7 @@ public class Model {
         rangeList = new ArrayList<>();
         rangeList.add(loadingSighting);
         fire = FirebaseDatabase.getInstance();
-        rangeRef = fire.getReference();
+        DatabaseReference rangeRef = fire.getReference();
         Query query = rangeRef.child("RatSightings").orderByChild("date_num").startAt(start).endAt(end);
         Log.d("rangeList","Completed querying");
         Log.d("rangeListTest", "Size of list: " + rangeList.size());
@@ -172,7 +170,7 @@ public class Model {
     public void loadUserDataBase() {
         Log.d("UserTakeIn","Loading Users");
         userList = new ArrayList<>();
-        userFire = FirebaseDatabase.getInstance();
+        FirebaseDatabase userFire = FirebaseDatabase.getInstance();
         userRef = userFire.getReference();
 
         userRef.addValueEventListener(new ValueEventListener() {
@@ -182,10 +180,9 @@ public class Model {
 
                 int count = 0;
                 try {
-                    Iterator<DataSnapshot> thing = dataSnapshot.child("users").getChildren().iterator();
-                    while (thing.hasNext()) {
-                        userList.add(thing.next().getValue(User.class));
-                        Log.d("UserTakeIn","User " + count + " loaded");
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.child("users").getChildren()) {
+                        userList.add(dataSnapshot1.getValue(User.class));
+                        Log.d("UserTakeIn", "User " + count + " loaded");
                         count++;
                     }
                 } catch (Exception e) {
@@ -212,13 +209,15 @@ public class Model {
         return sightings.add(r);
     }
 
-    public RatSighting getRatSighting(int id) {
-
-        if (sightings.size() > id) {
-            return sightings.get(id);
-        }
-        return nullSighting;
-    }
+// --Commented out by Inspection START (11/16/2017 10:33 PM):
+//    public RatSighting getRatSighting(int id) {
+//
+//        if (sightings.size() > id) {
+//            return sightings.get(id);
+//        }
+//        return nullSighting;
+//    }
+// --Commented out by Inspection STOP (11/16/2017 10:33 PM)
 
     public RatSighting getCurrentSighting() {
         return current;
@@ -238,7 +237,9 @@ public class Model {
         userRef.child("users").child(newAdd.getName()).setValue(newAdd);
     }
 
-    public void addRatSighting(RatSighting newAdd, String position) {
-        baseRef.child("RatSightings").child(position).setValue(newAdd);
-    }
+// --Commented out by Inspection START (11/16/2017 10:33 PM):
+//    public void addRatSighting(RatSighting newAdd, String position) {
+//        baseRef.child("RatSightings").child(position).setValue(newAdd);
+//    }
+// --Commented out by Inspection STOP (11/16/2017 10:33 PM)
 }

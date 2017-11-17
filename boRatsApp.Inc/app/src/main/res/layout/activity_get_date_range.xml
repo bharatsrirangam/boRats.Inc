@@ -22,7 +22,6 @@
         android:layout_marginRight="8dp">
 
         <EditText
-            android:id="@+id/StartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -30,7 +29,6 @@
             android:inputType="date" />
 
         <EditText
-            android:id="@+id/EndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
