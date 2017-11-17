@@ -16,7 +16,7 @@ public class WelcomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        Button loginButton = (Button) findViewById(R.id.button);
+        Button loginButton = findViewById(R.id.button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +26,7 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         });
 
-        TextView registerText = (TextView) findViewById(R.id.register);
+        TextView registerText = findViewById(R.id.register);
         registerText.setClickable(true);
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,5 @@
 package com.boratsinc;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,22 +12,18 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.User;
@@ -57,19 +51,17 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
     // UI references.
     private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
-        mPasswordView = ((EditText) findViewById(R.id.password));
+        mUsernameView = findViewById(R.id.username);
+        mPasswordView = findViewById(R.id.password);
         populateAutoComplete();
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,8 +69,8 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        View mLoginFormView = findViewById(R.id.login_form);
+//        View mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
@@ -300,11 +292,7 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
         //int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-//    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    //    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 //
 //        private final String mUsername;
 //        private final String mPassword;

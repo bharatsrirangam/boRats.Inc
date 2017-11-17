@@ -1,8 +1,6 @@
 package com.boratsinc.Model;
 
-/**
- * Created by baseb on 9/24/2017.
- */
+
 
 public class User {
     private String password;
@@ -20,18 +18,22 @@ public class User {
         return name;
     }
 
-    public void setName(String email) {
-        this.name = email;
-    }
+// --Commented out by Inspection START (11/16/2017 10:30 PM):
+//    public void setName(String email) {
+//        this.name = email;
+//    }
+// --Commented out by Inspection STOP (11/16/2017 10:30 PM)
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+// --Commented out by Inspection START (11/16/2017 10:30 PM):
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+// --Commented out by Inspection STOP (11/16/2017 10:30 PM)
 
-    public boolean isAdmin() {return false;}
+    // --Commented out by Inspection (11/16/2017 10:30 PM):public boolean isAdmin() {return false;}
 
 }

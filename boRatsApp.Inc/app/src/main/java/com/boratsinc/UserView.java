@@ -10,13 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.boratsinc.Model.Model;
-import com.boratsinc.Model.RatSighting;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -160,7 +159,7 @@ public class UserView extends AppCompatActivity {
             }
 
         } catch (ParseException e) {
-            Log.d("Bool","TRUE2" + e.getMessage() + "\n" + e.getStackTrace());
+            Log.d("Bool","TRUE2" + e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
 
             return false;
         }
