@@ -4,6 +4,8 @@ import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
 import com.boratsinc.RegisterUser;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -61,5 +63,29 @@ public class ExampleUnitTest {
         //ensure an invalid username that is too short cannot be used
         assertEquals(false, rUser.isUsernameValid("an6"));
 
+    }
+    @Test
+    /*
+     * Determines if getitemCount works correctly
+     * Robert Kuramshin
+     */
+    public void getItemCountTest(){
+        List<RatSighting> testList = new ArrayList<RatSighting>();
+        for (int i =0;i<5;i++){
+            testList.add(new RatSighting());
+        }
+
+        RatSightingsListView listView = new RatSightingsListView();
+        RatSightingsListView.MyAdapter adapter = listView.new MyAdapter(testList);
+
+        assertEquals(5,adapter.getItemCount());
+
+        testList.add(new RatSighting());
+
+        assertEquals(6,adapter.getItemCount());
+
+        testList.add(new RatSighting());
+
+        assertEquals(7,adapter.getItemCount());
     }
 }
