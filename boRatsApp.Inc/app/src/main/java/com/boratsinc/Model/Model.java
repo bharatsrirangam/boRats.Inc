@@ -38,6 +38,9 @@ public class Model {
 
         rangeList = new ArrayList<>();
         rangeList.add(temp);
+
+        getUserList();
+        userList.add(new User("BobWRats", "password"));
     }
 
     /**MUST MANUALLY LOAD THE USERLIST BEFORE CALLING THIS

@@ -242,7 +242,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         startActivity(intent);
     }
 
-    private boolean isUsernameValid(String username) {
+    public boolean isUsernameValid(String username) {
         //TODO: Replace this with your own logic
         List<User> currentList = Model.getInstance().getUserList();
         for (User user : currentList) {

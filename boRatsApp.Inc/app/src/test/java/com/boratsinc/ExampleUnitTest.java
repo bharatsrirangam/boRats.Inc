@@ -2,6 +2,7 @@ package com.boratsinc;
 
 import com.boratsinc.Model.Model;
 import com.boratsinc.Model.RatSighting;
+import com.boratsinc.RegisterUser;
 
 import org.junit.Test;
 
@@ -44,5 +45,17 @@ public class ExampleUnitTest {
                 assertEquals(model.getSightings().size(), 1);
             }
         }
+    }
+    @Test
+    public void isUserValidTest() {
+        //instantiate RegisterUser Class
+        RegisterUser rUser = new RegisterUser();
+        //ensure a username that already exists cannot be used
+        assertEquals(false, rUser.isUsernameValid("BobWRats"));
+        //ensure a valid, unused username can be used
+        assertEquals(true, rUser.isUsernameValid("anajib6"));
+        //ensure an invalid username that is too short cannot be used
+        assertEquals(false, rUser.isUsernameValid("an6"));
+
     }
 }
