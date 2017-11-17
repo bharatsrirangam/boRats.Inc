@@ -47,6 +47,10 @@ public class ExampleUnitTest {
         }
     }
     @Test
+    /*
+     * Written by Ashik Najib to test isUsernameValid in
+     * RegisterUser class
+     */
     public void isUserValidTest() {
         //instantiate RegisterUser Class
         RegisterUser rUser = new RegisterUser();
