@@ -57,6 +57,8 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
     // UI references.
     private AutoCompleteTextView mUsernameView;
     private EditText mPasswordView;
+    private View mProgressView;
+    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +77,8 @@ public class LoginUser extends AppCompatActivity implements LoaderCallbacks<Curs
             }
         });
 
-        View mLoginFormView = findViewById(R.id.login_form);
-        View mProgressView = findViewById(R.id.login_progress);
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
     }
 
     private void populateAutoComplete() {
