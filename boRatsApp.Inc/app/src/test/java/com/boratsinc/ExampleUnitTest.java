@@ -23,7 +23,7 @@ public class ExampleUnitTest {
     }
     @Test
     /*
-     * Written by Jarrett Schultz to test addSighting(RatSighting r) in
+     * Written by Jarrett Schultz to test addSighting(RatSighting r) et al. in
      * Model class
      */
     public void addRatCorrectly() {
