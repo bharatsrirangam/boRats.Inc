@@ -21,6 +21,10 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
     @Test
+    /*
+     * Written by Jarrett Schultz to test addSighting(RatSighting r) in
+     * Model class
+     */
     public void addRatCorrectly() {
         //instantiate class
         Model model = Model.getInstance();
@@ -35,16 +39,18 @@ public class ExampleUnitTest {
         //add one
         RatSighting rat;
         boolean added;
-        for (int x=0;x<100;x++) {
-            rat = new RatSighting("1", "Address", "01/01/2017", "Location", "11111", "New York", "Queens", "1", "1");
+        int size;
+        for (int x=0;x<1000;x++) {
+            size = model.getSightings().size();
+            rat = new RatSighting("" + x, "Address", "01/01/2017", "Location", "11111", "New York", "Queens", "1", "1");
             added = model.addSighting(rat);
             //check if it got added
             if (added) {
-                assertEquals(model.getSightings().get(model.getSightings().size() - 1), rat);
+                //Last RatSighting should be the last one in the list
+                assertEquals(model.getSightings().get(x), rat);
             } else {
-                //Should not have added anything
-                assertEquals(model.getSightings().get(0).getIncident_address(), "IDLE");
-                assertEquals(model.getSightings().size(), 1);
+                //The size of the List should not have changed
+                assertEquals(model.getSightings().size(), size);
             }
         }
     }

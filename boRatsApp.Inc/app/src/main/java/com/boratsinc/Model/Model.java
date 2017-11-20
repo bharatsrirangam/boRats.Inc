@@ -209,6 +209,11 @@ public class Model {
     }
 
     public boolean addSighting(RatSighting r) {
+        if (sightings.get(0).getIncident_address().equals("IDLE") ||
+                sightings.get(0).getIncident_address().equals("LOADING") ||
+                sightings.get(0).getIncident_address().equals("LOADING FAILED")) {
+            sightings.remove(0);
+        }
         return sightings.add(r);
     }
 
