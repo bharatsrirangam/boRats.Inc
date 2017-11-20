@@ -254,7 +254,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         return username.length() >= 4;
     }
 
-    private boolean isPasswordValid(String password) {
+    public boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         if (password.length() >= 4) {
             return true;

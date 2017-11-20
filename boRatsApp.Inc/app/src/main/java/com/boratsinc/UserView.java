@@ -145,15 +145,22 @@ public class UserView extends AppCompatActivity {
                 .show();
     }
 
-    private boolean isValidDates(String start, String end) {
+    protected boolean isValidDates(String start, String end) {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        if (start.length() != 10 || end.length() != 10) {
+            return false;
+        } else if (start.charAt(2) != '/' || start.charAt(5) != '/' || end.charAt(2) != '/' || end.charAt(5) != '/') {
+            return false;
+        }
         Date startD;
         Date endD;
         try {
+            format.setLenient(false);
             startD = format.parse(start);
+            format.setLenient(false);
             endD = format.parse(end);
 
-            if(startD.after(endD)) {
+            if(startD.after(endD) || startD.equals(endD)) {
                 Log.d("Bool","TRUE1");
 
                 return false;
