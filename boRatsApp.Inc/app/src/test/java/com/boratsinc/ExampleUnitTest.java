@@ -66,11 +66,11 @@ public class ExampleUnitTest {
     }
     @Test
     /*
-     * Determines if getitemCount works correctly
+     * Determines if getItemCount() works correctly
      * Robert Kuramshin
      */
     public void getItemCountTest(){
-        List<RatSighting> testList = new ArrayList<RatSighting>();
+        List<RatSighting> testList = new ArrayList<>();
         for (int i =0;i<5;i++){
             testList.add(new RatSighting());
         }
