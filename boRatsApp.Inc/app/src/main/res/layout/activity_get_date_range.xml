@@ -22,19 +22,17 @@
         android:layout_marginRight="8dp">
 
         <EditText
-            android:id="@+id/StartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Start Date (mm/dd/yyyy)"
+            android:hint="@string/Start_Date"
             android:inputType="date" />
 
         <EditText
-            android:id="@+id/EndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="End Date (mm/dd/yyyy)"
+            android:hint="@string/End_Date"
             android:inputType="date" />
 
     </LinearLayout>

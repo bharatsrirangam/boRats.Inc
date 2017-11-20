@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -74,12 +73,12 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         // Set up the login form.
-        mUsernameView = (AutoCompleteTextView) findViewById(R.id.username);
+        mUsernameView = findViewById(R.id.username);
         populateAutoComplete();
 
-        mPasswordConfirmView = (AutoCompleteTextView) findViewById(R.id.confirmPassword);
+        mPasswordConfirmView = findViewById(R.id.confirmPassword);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
 
         //Automatically tries to login at some point. I do not know when this occurs
         /*mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -93,7 +92,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             }
         });*/
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +102,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        mUserType = (Spinner) findViewById(R.id.Admin_User);
+        mUserType = findViewById(R.id.Admin_User);
         mUserType.setSelection(1);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, new String[]{"Admin", "User"});
@@ -184,7 +183,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             mPasswordView.setError("Please enter a password");
             focusView = mPasswordView;
             cancel = true;
-        } else if (!isPasswordValid(password)){
+        } else if (isPasswordValid(password)){
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -195,7 +194,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             mPasswordConfirmView.setError("Please confirm your password");
             focusView = mPasswordConfirmView;
             cancel = true;
-        } else if (!isPasswordValid(passwordC)){
+        } else if (isPasswordValid(passwordC)){
             mPasswordConfirmView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordConfirmView;
             cancel = true;
@@ -243,7 +242,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         startActivity(intent);
     }
 
-    private boolean isUsernameValid(String username) {
+    public boolean isUsernameValid(String username) {
         //TODO: Replace this with your own logic
         List<User> currentList = Model.getInstance().getUserList();
         for (User user : currentList) {
@@ -256,38 +255,34 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
 
     public boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        if (password.length() >= 4) {
-            return true;
-        } else {
-            return false;
-        }
+        return password.length() < 4;
     }
 
     /**
      * Shows the progress UI and hides the login form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    private void showProgress() {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        mLoginFormView.setVisibility(View.VISIBLE);
         mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                mLoginFormView.setVisibility(View.VISIBLE);
             }
         });
 
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.setVisibility(View.GONE);
         mProgressView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                0).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                mProgressView.setVisibility(View.GONE);
             }
         });
     }
@@ -343,7 +338,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         };
 
         int ADDRESS = 0;
-        int IS_PRIMARY = 1;
+        // --Commented out by Inspection (11/16/2017 10:30 PM):int IS_PRIMARY = 1;
     }
 
     /**
@@ -386,7 +381,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+            showProgress();
 
             if (success) {
                 finish();
@@ -399,7 +394,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
         @Override
         protected void onCancelled() {
             mAuthTask = null;
-            showProgress(false);
+            showProgress();
         }
     }
 }

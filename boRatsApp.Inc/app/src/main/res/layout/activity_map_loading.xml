@@ -28,11 +28,10 @@
         android:layout_marginRight="8dp">
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Please wait while the map is loaded." />
+            android:text="@string/Pls" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
