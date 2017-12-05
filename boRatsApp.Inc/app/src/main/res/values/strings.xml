@@ -43,7 +43,10 @@
     <string name="View_Chart">View Chart</string>
     <string name="Logout">Logout</string>
     <string name="Pic_Android">Picture of small android</string>
+    <string name="Admin_User">Admin/User</string>
 
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 
 
 </resources>

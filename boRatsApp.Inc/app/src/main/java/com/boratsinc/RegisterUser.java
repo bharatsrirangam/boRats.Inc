@@ -183,7 +183,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             mPasswordView.setError("Please enter a password");
             focusView = mPasswordView;
             cancel = true;
-        } else if (isPasswordValid(password)){
+        } else if (!isPasswordValid(password)){
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -194,7 +194,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
             mPasswordConfirmView.setError("Please confirm your password");
             focusView = mPasswordConfirmView;
             cancel = true;
-        } else if (isPasswordValid(passwordC)){
+        } else if (!isPasswordValid(passwordC)){
             mPasswordConfirmView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordConfirmView;
             cancel = true;
@@ -255,7 +255,7 @@ public class RegisterUser extends AppCompatActivity implements LoaderCallbacks<C
 
     public boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 0;
     }
 
     /**
